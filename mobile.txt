@@ -1,0 +1,12 @@
+<script>
+  (function(){
+    try{
+       var is_iPd = navigator.userAgent.match(/(iPad|iPod|iPhone)/i) != null;
+       var is_mobi = navigator.userAgent.toLowerCase().match(/(ipod|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|win ce)/i) != null;
+       if(is_mobi && window.location.search.indexOf("mv=fp")<0){
+         javascript:window.location.href="/";  
+       }
+    } catch(e){
+    }
+  })();
+</script>

@@ -1,0 +1,7 @@
+        location /news {
+            if (!-e $request_filename) { 
+                rewrite "^/news/([0-9]{1,}).html$" /article/read/aid/$1 last;
+                rewrite "^/news/([0-9]{1,})$" /article/read/aid/$1 last;
+                break;
+            } 
+        }
