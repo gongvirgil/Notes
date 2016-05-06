@@ -1,39 +1,41 @@
 # NoteBooks
 
-[About](index.md)
+[首页](index.md)
 [前端开发]()
 
-* [UI](UI.md)
-* [Html](Html.md)
-* [Css](Css.md)
-* [Bootstrap3](Bootstrap.md)
-* [Javascript](Javascript.md)
-* [jQuery](jQuery.md)
+* [UI](./front-end/UI.md)
+* [Html](./front-end/Html.md)
+* [Css](./front-end/Css.md)
+* [Bootstrap](./front-end/Bootstrap.md)
+* [Javascript](./front-end/Javascript.md)
+* [jQuery](./front-end/jQuery.md)
 - - - -
-* [Others](Others.md)
+* [Others](./front-end/index.md)
 
 [PHP]()
 
-* [原生PHP](PHP.md)
-* [ThinkPHP](ThinkPHP.md)
+* [原生PHP](./php/PHP.md)
+* [ThinkPHP](./php/ThinkPHP.md)
 - - - -
-* [PHP相关](PHP-Something.md)
-* [正则表达式](preg.md)
+* [composer](./php/composer.md)
+- - - -
+* [PHP相关](./php/PHP-Something.md)
+* [正则表达式](./php/preg.md)
 
 [Python](Python.md)
 [Nodejs](Nodejs.md)
 
 [数据库]()
 
-* [MySQL](MySQL.md)
-* [MongoDB](MongoDB.md)
+* [MySQL](./database/MySQL.md)
+* [MongoDB](./database/MongoDB.md)
 
 [系统]()
 
-* [Windows](Windows.md)
-* [Linux](Linux.md)
-* [iOS](iOS.md)
-* [Mac](Mac.md)
+* [Windows](./system/Windows.md)
+* [Linux](./system/Linux.md)
+* [iOS](./system/iOS.md)
+* [Mac](./system/Mac.md)
 
 [浏览器]()
 
@@ -43,7 +45,12 @@
 
 [工具]()
 
-* [Git](Git.md)
-* [SVN](SVN.md)
-* [Sublime text3](sublime.md)
-* [Excel](Excel.md)
+* [Git](./tool/Git.md)
+* [SVN](./tool/SVN.md)
+* [Sublime text3](./tool/sublime.md)
+* [Excel](./tool/Excel.md)
+
+[语言]()
+
+* [英语](./language/English.md)
+* [日语](./language/Japanese.md)
