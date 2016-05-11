@@ -1,3 +1,5 @@
+# Linux操作命令
+
 * 查看时间： date
 * 修改时间： date -s "20151008 19:33:00"（hwclock --systohc）
 * 重启apache:   /www/yile/apache/bin/apachectl restart
@@ -5,7 +7,8 @@
 * 复制文件夹下文件  cp -r /home/aaa/* /home/sss
 * 修改权限 chmod -R 777 /home/aaa/*
 * 删除文件 rm -rf /home/aaa/*
-
+* 查找文件 find / -name httpd.conf
+* $ find . -name 'my*'
 find .| xargs grep -ri "XXXX" -l 
 find /etc -name "XXXX" -exec grep "XXXX" {} \; -print
 

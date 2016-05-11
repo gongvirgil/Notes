@@ -10,15 +10,12 @@
 
 
 ## sublime常用快捷鍵
-
-Alt+Shift+[1-9] 分屏
-
-Ctrl+J 合并选中的多行代码为一行
-
-Ctrl+K+U 改为大写 
-Ctrl+K+L 改为小写
-
-
+Windows 					| Mac 					| 功能
+Alt+Shift+[1-9] 			|						| 分屏
+Ctrl+J 						|						| 合并选中的多行代码为一行
+Ctrl+K+U 					|						| 改为大写 
+Ctrl+K+L 					|						| 改为小写
+Ctrl+D 						| command+D				| 选中相同的词
 
 ## sublime常用插件
 
