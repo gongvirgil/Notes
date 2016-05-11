@@ -1,16 +1,17 @@
-##First
+# MarkDown使用笔记
+
 sublime text预览markdown效果: Ctrl+Alt+O
 
 ----
 
-####文字
+##文字
 try something
 
 **我是粗文本哦**
 
 ----
 
-####引用文本
+##引用文本
 > this is a simple dialogure if you can see this article successful 
 > this is a simple dialogure if you can see this article successful 
 > this is a simple dialogure if you can see this article successful 
@@ -18,32 +19,32 @@ try something
 
 ----
 
-####链接
+##链接
 [sdgdf][1]
 [1]: http://www.baidu.com "baidu"
 
 ----
 
-####图片
+##图片
 ![Aaron Swartz][p1]
 [p1]: http://upload-images.jianshu.io/upload_images/188518-fcb1ab53d4af226f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 "Aaron Swartz"
 
 ----
 
-####无序列表
+##无序列表
 * sdgdf
 * sgerg
 * dgdtgrt
 ----
 
-####有序列表
+##有序列表
 1. abcd
 2. efgh
 3. ijkl
 
 ----
 
-####表格
+##表格
 a|b|c
 ----|----|----
 我是a|他是b|它是c
@@ -51,15 +52,15 @@ a is a man|b is a girl|c is a dog
 
 ----
 
-####代码
+##代码
         <?php
         if($a>$b){
             echo $c=$a-$b;
         }
         ?>
 
-####音乐
+##音乐
 
-####视频
+##视频
 
 <iframe width="80%" height="400" frameborder="0" allowfullscreen="" src="http://v.qq.com/iframe/player.html?vid=a0174g18ljr&tiny=0&auto=0"></iframe>
