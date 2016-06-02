@@ -51,3 +51,4 @@ $this->server_list = $server->where($map)->field('server.gid,gamename,game_web,s
 <eq name="mod" value="0"><li class="<if condition='$k eq 1'>on</if>" id="server_page_{$k/10-1/10}"><if condition="$k eq $server_count">{$k}<elseif condition="$k-1+10 gt $server_count"/>{$k}-{$server_count}<else />{$k}-{$k-1+10}</if>服</li></eq>
 </volist>  
 
+thinkphp cli 模式下 命令执行 `php index.php Index index`

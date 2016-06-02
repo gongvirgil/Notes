@@ -71,7 +71,8 @@ crontab定时执行任务
     入文件并退出：:x
     强制性写入文件并退出：:wp
     退出vim：:quit
-    分 时 日 月 周 命令 0 */3 * * * wget http://www.992you.com/Auto/rebate
+    分 时 日 月 周 命令 
+    0 */3 * * * wget http://www.992you.com/Auto/rebate
 
 如果进入了记录状态（recording）不要慌，按esc，然后按q，就可以退出recording了。
 

@@ -18,10 +18,16 @@ mysql -uroot -p
 	mysql> GRANT ALL PRIVILEGES ON *.* TO 'username'@'%'IDENTIFIED BY 'password' WITH GRANT OPTION; 
 	mysql> GRANT ALL PRIVILEGES ON *.* TO 'username'@'ip'IDENTIFIED BY 'password' WITH GRANT OPTION; 
 
-	mysql> FLUSH PRIVILEGES;
+	更新：mysql> FLUSH PRIVILEGES;
 
 	mysql> show grants for username;
 	mysql> show grants for username@ip;
+
+	取消授权：REVOKE ALL PRIVILEGES ON *.* FROM 'root'@'123.126.23.70';
+
+	删除添加的用户  
+	USE mysql;
+	DELETE FROM USER WHERE USER='root' AND Host='123.126.23.70';
 
 ## MySQL语句小技巧
 
@@ -36,6 +42,12 @@ SELECT UNIX_TIMESTAMP('2015-05-31');
 SELECT FROM_UNIXTIME(1234567890, '%Y-%m-%d %H:%i:%S');
 
 Insert into Table2(a, c, d) select a,c,5 from Table1
+
+修改字段非空为空：
+ALTER TABLE `m_enterprise` MODIFY epcode varchar(64) NULL;
+加一个字段
+ALTER TABLE `m_sync` ADD supent_id int(11) NOT NULL DEFAULT 0 after ep_id;
+
 
 设置自增起始值：
 ALTER TABLE `mygame_spend_log` AUTO_INCREMENT = 1;
