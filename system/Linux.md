@@ -22,6 +22,11 @@ sed -i "s/XXXX/YYYY/g" `grep XXXX -rl /www/../..`
 清除 空文件 
 find . -name "*" -type f -size 0c | xargs -n 1 rm -f
 
+显示文件最后1000行
+tail -n 1000 /www/a.txt
+
+跟踪显示文件最后10行（ctrl+c退出）
+tail -f /www/a.txt
 
 部分文件写入另一文件
 tail -n 1000 /www/a.txt > /www/b.txt
