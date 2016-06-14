@@ -40,7 +40,7 @@ $map['is_display'] = 1;
 $map['start_time'] = array('lt',strtotime('tomorrow'));
 $this->server_list = $server->where($map)->field('server.gid,gamename,game_web,sid,servername,start_time')->order('start_time desc')->limit('60')->select();
 
-?>
+
 
 
 {$变量|default="默认值"}
@@ -52,3 +52,7 @@ $this->server_list = $server->where($map)->field('server.gid,gamename,game_web,s
 </volist>  
 
 thinkphp cli 模式下 命令执行 `php index.php Index index`
+
+//利用子查询进行查询 
+$subQuery = $model->field('id,name')->table('tablename')->group('field')->where($where)->order('status')->buildSql();
+$model->table($subQuery.' a')->where()->order()->select() 

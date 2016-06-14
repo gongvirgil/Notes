@@ -2,6 +2,7 @@
 
 * 查看时间： date
 * 修改时间： date -s "20151008 19:33:00"（hwclock --systohc）
+* 同步服务器时间：ntpdate asia.pool.ntp.org
 * 重启apache:   /www/yile/apache/bin/apachectl restart
 * 重启httpd:		 service httpd restart
 * 复制文件夹下文件  cp -r /home/aaa/* /home/sss
@@ -11,7 +12,8 @@
 * $ find . -name 'my*'
 find .| xargs grep -ri "XXXX" -l 
 find /etc -name "XXXX" -exec grep "XXXX" {} \; -print
-
+* 查看历史命令：history | more
+* 查找mysql：ps -ef|grep mysql
 批量替换文件夹下全部文件中某字符串XXXX为YYYY（空格可以直接输入，斜杠可以转义）
 sed -i "s/XXXX/YYYY/g" `grep XXXX -rl /www/../..`
 
