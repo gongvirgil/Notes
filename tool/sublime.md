@@ -23,6 +23,7 @@ Ctrl+D 						| command+D				| 选中相同的词
 * Alignment (快捷键改为 ctrl+shift+a)
 * ColorHighlighter
 * Colorpicker
+* DocBlockr
 * PyV8 / Emmet
 * jQuery
 * SidebarEnhancements
