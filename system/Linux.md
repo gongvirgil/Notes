@@ -9,6 +9,8 @@
 * 修改权限 chmod -R 777 /home/aaa/*
 * 删除文件 rm -rf /home/aaa/*
 * 查找文件 find / -name httpd.conf
+* 查看文件出现搜索字符的行 cat -b filename | grep "xxx"
+* 查看文件1000到3000行 cat filename | tail -n +3000 | head -n 1000
 * $ find . -name 'my*'
 find .| xargs grep -ri "XXXX" -l 
 find /etc -name "XXXX" -exec grep "XXXX" {} \; -print

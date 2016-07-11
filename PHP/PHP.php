@@ -57,6 +57,38 @@ function get_client_ip() {
   $test = "df -hl";
   exec($test,$array);
   echo json_encode($array);
+
+//打印执行时间和占用内存
+function microtime_float()
+{
+   list($usec, $sec) = explode(" ", microtime());
+   return ((float)$usec + (float)$sec);
+}
+class test{
+    static $start_time;
+    static $end_time;
+    static $start_memory;
+    static $end_memory;
+     
+    public static function start()
+    {
+        self::$start_memory = memory_get_usage();
+        self::$start_time = microtime_float();
+        echo '<br/>Start @'.self::$start_time.'('.self::$start_memory.')|------->';
+    }
+     
+    public static function end()
+    {
+        self::$end_time = microtime_float();
+        self::$end_memory = memory_get_usage();
+        echo 'End @'.self::$end_time.'('.self::$end_memory.') :';
+        echo '|======= 共耗时：'.(self::$end_time-self::$start_time).'，共用内存：'.(self::$end_memory-self::$start_memory);
+    }
+}
+
+
+
+
 //批量修改数据库表名前缀
     public function tt(){
       $old_prefix='mygame_';//数据库的前缀

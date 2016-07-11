@@ -16,6 +16,8 @@ Ctrl+J 						|						| 合并选中的多行代码为一行
 Ctrl+K+U 					|						| 改为大写 
 Ctrl+K+L 					|						| 改为小写
 Ctrl+D 						| command+D				| 选中相同的词
+Ctrl+R 						| command+R 			| 函数列表
+selected+F12 				| 						| 跳转到定义处
 
 ## sublime常用插件
 
@@ -32,6 +34,8 @@ Ctrl+D 						| command+D				| 选中相同的词
 * DeleteBlankLines
 * FileDiffs
 * SublimeLinter
+* Monokai extended
+
 
 ###Package Control
 
@@ -123,28 +127,32 @@ Emmet 依赖包
 
 使用：https://github.com/kemayo/sublime-text-git/wiki
 
-###HTML-CSS-JS Prettify
+### HTML-CSS-JS Prettify
 
 `ctrl + shift+ h` 格式化HTML/CSS/JS文档
 
-###jQuery
+### jQuery
 
 jQ函数提示和自动补全
 
-###MarkdownEditing
+### MarkdownEditing
 
-###Markdown Preview
+### Markdown Preview
 
-###MultiEditUtils
+### Monokai extended
+
+字体方案，支持markdown语法高亮
+
+### MultiEditUtils
 
 [MultiEditUtils](https://github.com/philippotto/Sublime-MultiEditUtils)插件增强了SublimeText内置的“multi-cursor”和“multi-selection”功能,在编辑冗长的代码行时为我们节省了时间。例如:您可以在选择的行之间合并或交换,它还增强了SublimeText的“split selection”，允许您指定符号来分离选定的行。我认为这是专业码农必须安装的一个插件。
 
-###SidebarEnhancements
+### SidebarEnhancements
 
 在侧边栏的文件上右击时，这个插件提供了大量更多的选择。打开，查找，复制和粘贴，等等。
 
 
-###OmniMarkupPreviewer
+### OmniMarkupPreviewer
 
 `ctrl + alt+ o` 用来预览markdown 编辑的效果，同样支持渲染代码高亮的样式。
 

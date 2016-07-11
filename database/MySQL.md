@@ -41,6 +41,8 @@ SELECT md5('molier');
 SELECT UNIX_TIMESTAMP('2015-05-31');
 SELECT FROM_UNIXTIME(1234567890, '%Y-%m-%d %H:%i:%S');
 
+替换字符串：replace (`field_name`,'from_str','to_str') 
+
 Insert into Table2(a, c, d) select a,c,5 from Table1
 
 修改字段非空为空：
