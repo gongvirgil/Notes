@@ -34,7 +34,7 @@ mysql -uroot -p
 随机数
 SELECT FLOOR((RAND() * 999999));
 字符串拼接
-SELECT CONCAT('工号为:',FNumber,'的员工的幸福指数:',FSalary/(FAge-21));
+SELECT CONCAT('','');
 md5加密
 SELECT md5('molier');   
 时间戳->date:
@@ -42,6 +42,30 @@ SELECT UNIX_TIMESTAMP('2015-05-31');
 SELECT FROM_UNIXTIME(1234567890, '%Y-%m-%d %H:%i:%S');
 
 替换字符串：replace (`field_name`,'from_str','to_str') 
+
+字符串截取：
+
+* select left('sqlstudy.com', 3);//sql
+* select right('sqlstudy.com', 3);//com
+* substring(str, pos); substring(str, pos, len)
+* select substring_index('www.sqlstudy.com.cn', '.', 2); //www.sqlstudy
+
+
+* 前补0(LPAD)：select LPAD(uid, 8, 0) from uc_members where uid = '100015';//结果：uid: 00100015
+* 后补0(RPAD)：select RPAD(uid, 8, 0),username from uc_members where uid = '100015';
+
+### BIN(N）返回二进制值N的一个字符串表示
+* select bin(123);
+
+### OCT(N）返回八进制值N的一个字符串表示
+* select oct(123);
+
+### HEX(N）返回十六进制值N的一个字符串表示
+* select hex(123);
+* select concat('0x', hex(123));
+
+
+
 
 Insert into Table2(a, c, d) select a,c,5 from Table1
 

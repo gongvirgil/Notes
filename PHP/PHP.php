@@ -20,6 +20,32 @@ preg_replace ( "/\s(?=\s)/","\\1", $v )
 substr($str,0,strlen($str)-1);
 //判断一个字符串是否包含另一个字符串
 strpos($a, $b) !== false 如果$a 中存在 $b，则为 true ，否则为 false
+
+urlencode(iconv("gbk","utf-8","基本资料进度");//把中文gbk编码转为utf8
+
+iconv("utf-8","gbk",urldecode('%BB%F9%B1%BE%D7%CA%C1%CF%BD%F8%B6%C8'));
+
+$aaa = preg_match('/^[\x{4e00}-\x{9fa5}\w\s-#()（）]{1,60}+$/u',$_REQUEST['a']);
+
+
+/**
+ * [get_time 获取远程服务器时间戳]
+ * @param  [type] $host [host]
+ * @param  [type] $port [port]
+ * @return [type]       [timestamp]
+ */
+function get_time($host,$port){
+    $data  = "HEAD / HTTP/1.1\r\n";
+    $data .= "Host: $host\r\n";
+    $data .= "Connection: Close\r\n\r\n";
+    $fp = fsockopen($host, $port);
+    fputs($fp, $data);
+    $resp = '';
+    while ($fp && !feof($fp))
+        $resp .= fread($fp, 1024);
+    preg_match('/^Date: (.*)$/mi',$resp,$matches);
+    return strtotime($matches[1]);
+}
 //php 获取ip
 function get_client_ip() {
     $ip = $_SERVER['REMOTE_ADDR'];

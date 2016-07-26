@@ -37,6 +37,8 @@ MySQLdb			|	|
 
 * 
 
+### 字符串相关
+
 去空格及特殊符号
 
 	s.strip().lstrip().rstrip(',')
@@ -210,3 +212,22 @@ PHP 中 addslashes 的实现
 	print str[-3:-1] #截取倒数第三位与倒数第一位之前的字符
 	print str[-3:] #截取倒数第三位到结尾
 	print str[:-5:-3] #逆序截取
+
+
+### 文件I/O相关
+
+* python对文件的处理的两个内建函数：open()、file()，这个两函数提供了初始化输入\输出（I\O）操作的通用接口。两函数的功能相同。
+
+	open(filename, access_mode='r', buffering=-1)
+
+access_mode(打开文件的模式):
+
+access_mode	|	说明
+---|---
+r		|	以读方式打开
+rU或Ua	|	以读方式打开同时提供通用换行符支持
+w		|	以写方式打开
+a		|	以追加方式打开
+r+ 		|	以读写方式打开
+w+ 		|	以读写方式打开
+a+ 		|	以读写方式打开
