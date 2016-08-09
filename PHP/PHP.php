@@ -27,6 +27,12 @@ iconv("utf-8","gbk",urldecode('%BB%F9%B1%BE%D7%CA%C1%CF%BD%F8%B6%C8'));
 
 $aaa = preg_match('/^[\x{4e00}-\x{9fa5}\w\s-#()（）]{1,60}+$/u',$_REQUEST['a']);
 
+//二维数组排序
+
+  foreach ($card_list as $k => $v) {
+      $volume[$k]  = $v['start_time'];
+  }
+  array_multisort($volume, SORT_DESC, $card_list);
 
 /**
  * [get_time 获取远程服务器时间戳]

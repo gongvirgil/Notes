@@ -47,6 +47,8 @@
 
 str.indexOf('xxx');
 
+num.toFixed(2) 两位小数
+
 escape()
 unescape()
 

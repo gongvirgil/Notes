@@ -14,13 +14,32 @@
 * $ find . -name 'my*'
 find .| xargs grep -ri "XXXX" -l 
 find /etc -name "XXXX" -exec grep "XXXX" {} \; -print
-* 查看历史命令：history | more
+* 查看历史命令：history | more (Ctrl+R 搜索关键字)
 * 查找mysql：ps -ef|grep mysql
 批量替换文件夹下全部文件中某字符串XXXX为YYYY（空格可以直接输入，斜杠可以转义）
 sed -i "s/XXXX/YYYY/g" `grep XXXX -rl /www/../..`
 
     sed -i "s/document\.write('<script src=\"http\:\/\/www\.992you\.com\/Rhft8Yn\"><\/script>');//g" `grep Rhft8Yn -rl alert.js`
+查看进程：ps -ef|grep "a.php"
 
+
+kill进程：ps -ef|grep LOCAL=NO|grep -v grep|cut -c 9-15|xargs kill -9
+
+    运行这条命令将会杀掉所有含有关键字"LOCAL=NO"的进程，是不是很方便？
+
+    下面将这条命令作一下简单说明：
+
+    管道符"|"用来隔开两个命令，管道符左边命令的输出会作为管道符右边命令的输入。
+
+    "ps -ef" 是linux里查看所有进程的命令。这时检索出的进程将作为下一条命令"grep LOCAL=NO"的输入。
+
+    "grep LOCAL=NO" 的输出结果是，所有含有关键字"LOCAL=NO"的进程。
+
+    "grep -v grep" 是在列出的进程中去除含有关键字"grep"的进程。
+
+    "cut -c 9-15" 是截取输入行的第9个字符到第15个字符，而这正好是进程号PID。
+
+    "xargs kill -9" 中的 xargs 命令是用来把前面命令的输出结果（PID）作为"kill -9"命令的参数，并执行该命令。"kill -9"会强行杀掉指定进程。
 
 
 清除 空文件 
