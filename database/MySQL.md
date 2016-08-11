@@ -40,6 +40,7 @@ SELECT md5('molier');
 时间戳->date:
 SELECT UNIX_TIMESTAMP('2015-05-31');
 SELECT FROM_UNIXTIME(1234567890, '%Y-%m-%d %H:%i:%S');
+SELECT	DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%S');
 
 替换字符串：replace (`field_name`,'from_str','to_str') 
 
