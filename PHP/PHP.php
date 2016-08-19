@@ -232,3 +232,306 @@ discuz authcode加密
     return $true;
   }
 ?>
+
+
+1.基本的判断函数
+
+    is_dir — 判断给定文件名是否是一个目录
+
+    is_file — 判断给定文件名是否为一个文件
+
+    is_executable — 判断给定文件名是否可执行
+
+    is_link — 判断给定文件名是否为一个符号连接
+
+    is_readable — 判断给定文件名是否可读
+
+    is_uploaded_file — 判断文件是否是通过 HTTP POST 上传的
+
+    is_writable — 判断给定的文件名是否可写
+
+    is_writeable — is_writable 的别名
+
+2.文件相关信息获取
+
+    file_exists — 检查文件或目录是否存在
+
+    fileatime — 取得文件的上次访问时间
+
+    filectime — 取得文件的 inode 修改时间
+
+    filegroup — 取得文件的组
+
+    fileinode — 取得文件的 inode
+
+    filemtime — 取得文件修改时间
+
+    fileowner — 取得文件的所有者
+
+    fileperms — 取得文件的权限
+
+    filesize — 取得文件大小
+
+    filetype — 取得文件类型
+
+ 3.文件路径相关函数
+
+相对路径：相对于当前目录的上级和下级目录
+
+    . 当前目录
+    .. 上一级目录
+
+路径分隔符号
+
+    linux/Unix “/”
+    windows “\”
+    不管是什么操作系统PHP的目录分割符号都支技 / (Linux)
+
+绝对路径：可以指的操作系统的根，也可以指的是存放网站的文档根目录
+
+    如果是在服务器中执行（通过PHP文件处理函数执行）路径 则 “根”指的就是操作系统的根
+    如果程序是下载的客户端，再访问服务器中的文件时，只有通过Apache访问，“根”也就指的是文档根目录
+
+三个相关函数
+
+    basename — 返回路径中的文件名部分
+
+    dirname — 返回路径中的目录部分
+
+    pathinfo — 返回文件路径的信息 Array ( [dirname] => ../www/yyy [basename] => login.rar [extension] => rar [filename] => login )
+
+4. 文件的创建删除修改
+
+    touch — 创建一个文件
+
+    unlink — 删除文件
+
+    rename — 重命名一个文件或目录
+
+    copy — 拷贝文件
+
+例如下面的例子
+  touch("./php.apahce"); //创建文件
+  unlink("C:/AppServ/www/xsphp/apache.php");  //删除文件
+  rename("./test.txt", "d:/test2.txt");    //重命名文件
+  copy("cache.txt", "./cache5.txt");   //复制文件
+  chmod("a.txt",755);   //设置文件权限
+
+权限相关内容
+
+    rwx 表这个文件的拥有者 r读 w写 x执行
+    rwx 表这个文件的拥有者所在的组 r读 w写 x执行
+    rwx 其它用户对这个为文件的权限 r读 w写 x执行
+
+文件读写
+1. file_get_contents(string)
+
+传入文件名，直接得到文件中的文本信息，返回的内容即为文件中的文本。
+
+例如
+<?php
+ $str = file_get_contents("1.txt");
+ echo $str;
+ ?>
+
+则直接打开了 1.txt 文件中的内容，并返回文件中的文本信息。
+
+如果文件不存在，那么会提示
+
+    Warning: file_get_contents(2.txt): failed to open stream: No such file or directory
+
+同样，文件还可以是远程文件，例如，参数传入 http://www.qq.com
+
+即可以呈现腾讯网的首页内容。
+
+缺点：不能读取指定部分的内容，一次性全部读取。
+2. file_put_contents(filename,content)
+
+写入文件，filename是写入文件的文件名，content是写入内容，返回值是成功写入的字符长度。
+<?php 
+ echo file_put_contents("2.txt",'abcd');
+?>
+
+2.txt 文件如果不存在，那么则会创建这个文件并写入 abcd 这个字符串，返回 4 ，为字符串的长度。 如果文件存在，则会将文件清空，然后写入字符串，返回写入长度。
+
+缺点：不能以追加的方式写入文件。
+3.file(filename)
+
+file是直接打开某一个文件，返回的结果是一个数组，每一行是数组的一个元素。也就是说，获取行数只需要输出数组的大小即可。例如
+<?php 
+ $str = file("1.txt");
+ var_dump($str);
+ echo count($str);
+?>
+
+即可得到数组形式的行内容，而且输出了行数。
+
+缺点：不能读取指定部分的内容。
+4.fopen(filename,mode)
+
+filename是文件名，可以是路径加名，也可以是远程服务器文件。
+
+mode是打开文件的方式
+
+    r，以只读模式打开文件
+    r+，除了读，还可以写入。
+    w， 以只写的方式打开，如果文件不存在，则创建这个文件,并写放内容，如果文件存在，并原来有内容，则会清除原文件中所有内容，再写入（打开已有的重要文件）
+    w+，除了可以写用fwrite, 还可以读fread
+    a，以只写的方式打开，如果文件不存在，则创建这个文件，并写放内容，如果文件存在，并原来有内容，则不清除原有文件内容，再原有文件内容的最后写入新内容，（追加）
+    a+，除了可以写用fwrite, 还可以读fread
+    b，以二进制模式打开文件（图，电影）
+    t，以文本模式打开文件
+
+注意：
+
+    r+具有读写属性，从文件头开始写，保留原文件中没有被覆盖的内容；
+
+    w+具有读写属性，写的时候如果文件存在，会被清空，从头开始写。
+
+返回的是一个文件资源
+5.fwrite(file,content)
+
+文件写入功能，file是文件资源，用fopen函数获取来的，content是写入内容。同 fputs 函数。
+
+例如
+<?php 
+ $file = fopen("1.txt","r+");
+ $result = fwrite($file,"xx");
+ if($result){
+ echo "Success";
+ }else
+ echo "Failed";
+ }
+?>
+
+则从头开始写入资源，即把前两个字符设为 xx
+6. fread(file,size)
+
+读取文件指定部分的长度，file是文件资源，由fopen返回的对象，size是读取字符的长度。
+
+例如
+<?php 
+ $file = fopen("1.txt","r");
+ $content = fread($file,filesize("1.txt"));
+ echo $content;
+?>
+
+不过，上述的 filesize 方法只能获取本地文件大小，对于远程文件的读取就要换一种方法了。
+
+例如
+<?php 
+ $file = fopen("http://www.qq.com","r");
+ $str = "";
+ while(!feof($file)){  //判断时候到了文件结尾
+ $str.=fread($file,1024);
+ }
+ echo $str;
+?>
+
+7.fgets(file)
+
+file是文件资源，每次读取一行。例如我们读取出腾讯首页一共有多少行。
+ <?php 
+ $file = fopen("http://www.qq.com","r");
+ $str = "";
+ $count = 0;
+ while(!feof($file)){
+ $str .= fgets($file);
+ $count ++;
+ }
+ echo $count;
+?>
+
+会输出结果 8893，我们可以查看源文件，看看它一共有多少行，验证一下即可。
+7.fgetc(file)
+
+与fgets方法很相似，file是文件资源，每次读取个字符。例如我们读取出腾讯首页一共有多少个字符。
+<?php 
+ $file = fopen("http://www.qq.com","r");
+ $str = "";
+ $count = 0;
+ while(!feof($file)){
+ $str .= fgetc($file);
+ $count ++;
+ }
+ echo $count;
+?>
+
+上述代码便会输出所有的字符数量。
+8.ftell(file)
+
+ftell 是返回当前读文件的指针位置，file 是文件资源，是由 fopen 返回的对象。
+9.fseek(file,offset,whence)
+
+file
+
+文件系统指针，是典型地由 fopen() 创建的 resource(资源)。
+
+offset
+
+偏移量。
+
+要移动到文件尾之前的位置，需要给 offset 传递一个负值，并设置 whence 为 SEEK_END。
+
+whence
+
+    SEEK_SET – 设定位置等于 offset 字节。
+
+    SEEK_CUR – 设定位置为当前位置加上 offset。
+
+    SEEK_END – 设定位置为文件尾加上 offset。
+
+10.rewind($file)
+
+回到文件头部，file是文件资源
+
+例如
+<?php 
+ $file = fopen("1.txt","r");
+ echo ftell($file)."<br>"; //输出读取前的指针位置
+ echo fread($file,10)."<br>"; //读取10个字符，指针移动10个单位
+ echo ftell($file)."<br>"; //输出读取完之后当前指针位置
+ fseek($file,20,SEEK_CUR); //当前指针前移20单位
+ echo ftell($file)."<br>"; //输出移动之后指针的位置
+ echo fread($file,10)."<br>"; //输出读取的10个字符
+ echo ftell($file)."<br>"; //输出读完10个字符之后指针的位置
+ fseek($file,-20,SEEK_END); //指针移动到文件末尾前20个字符
+ echo ftell($file)."<br>"; //输出移动之后指针的位置
+ echo fread($file,10)."<br>"; //输出文件末尾20个字符
+ echo ftell($file)."<br>"; //输出读完10个字符之后指针的位置
+ rewind($file); //回到文件头部
+ echo ftell($file)."<br>"; //输出移动之后指针的位置
+?>
+
+11.flock(file,operation[,wouldblock])
+
+file
+
+文件资源指针，是典型地由 fopen() 创建的 resource(资源)。
+
+operation
+
+operation 可以是以下值之一：
+
+    LOCK_SH取得共享锁定（读取的程序）。
+
+    LOCK_EX 取得独占锁定（写入的程序。
+
+    LOCK_UN 释放锁定（无论共享或独占）。
+
+如果不希望 flock() 在锁定时堵塞，则是 LOCK_NB（Windows 上还不支持）。
+
+wouldblock
+
+如果锁定会堵塞的话（EWOULDBLOCK 错误码情况下），可选的第三个参数会被设置为 TRUE。（Windows 上不支持）
+
+例如
+<?php 
+ $file = fopen("1.txt","a");
+ if(flock($file,LOCK_EX)){
+ fwrite($file,"xxx");
+ flock($file,LOCK_UN);
+ }
+?>
+
+

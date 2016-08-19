@@ -81,19 +81,31 @@ ALTER TABLE `mygame_spend_log` AUTO_INCREMENT = 1;
 创建索引：
 唯一键索引=》CREATE UNIQUE INDEX uid ON mygame_member_extend_info(uid);
 
-select自增
-select (@i:=@i+1) as i FROM table,(select @i:=0) as a
+* select自增
 
-查询一张表不在另一表的数据
-select a.* from mygame_member a where not exists (select 1 from mygame_member_extend_info b where b.uid = a.uid)
+	select (@i:=@i+1) as i FROM table,(select @i:=0) as a
 
-将表中数据重新排序更换ID
-DROP TEMPORARY TABLE tmp;
-CREATE TEMPORARY TABLE tmp SELECT * FROM `gong_city` ORDER BY province_id asc;
-DELETE FROM `gong_city`;
-ALTER TABLE `gong_city` AUTO_INCREMENT = 1;
-INSERT INTO `gong_city`(city_name,province_id) SELECT city_name,province_id FROM tmp;
+* 查询一张表不在另一表的数据
 
+	select a.* from mygame_member a where not exists (select 1 from mygame_member_extend_info b where b.uid = a.uid)
+
+* 将表中数据重新排序更换ID
+
+	DROP TEMPORARY TABLE tmp;
+	CREATE TEMPORARY TABLE tmp SELECT * FROM `gong_city` ORDER BY province_id asc;
+	DELETE FROM `gong_city`;
+	ALTER TABLE `gong_city` AUTO_INCREMENT = 1;
+	INSERT INTO `gong_city`(city_name,province_id) SELECT city_name,province_id FROM tmp;
+
+
+* 查看数据表中字符集设置
+
+	SHOW CREATE TABLE tablename\G
+	SELECT COLLATION_NAME FROM `COLUMNS` where TABLE_NAME = 'xxx';
+	
+* 修改 MYSQL 表的字符集
+
+	ALTER TABLE tbl_name CONVERT TO CHARACTER SET charset_name;
 
 show processlist;
 show full processlist;
