@@ -75,12 +75,22 @@ ALTER TABLE `m_enterprise` MODIFY epcode varchar(64) NULL;
 加一个字段
 ALTER TABLE `m_sync` ADD supent_id int(11) NOT NULL DEFAULT 0 after ep_id;
 
+    查看列：desc 表名;
+    修改表名：alter table t_book rename to bbb;
+    添加列：alter table 表名 add column 列名 varchar(30);
+    删除列：alter table 表名 drop column 列名;
+    修改列名MySQL： alter table bbb change nnnnn hh int;
+    修改列名SQLServer：exec sp_rename't_student.name','nn','column';
+    修改列名Oracle：lter table bbb rename column nnnnn to hh int;
+    修改列属性：alter table t_book modify name varchar(22);
+
+
 
 设置自增起始值：
 ALTER TABLE `mygame_spend_log` AUTO_INCREMENT = 1;
 创建索引：
 唯一键索引=》CREATE UNIQUE INDEX uid ON mygame_member_extend_info(uid);
-
+CREATE INDEX `NAME` ON `TABLE` (`COLUMN1`, `COLUMN2`)
 * select自增
 
 	select (@i:=@i+1) as i FROM table,(select @i:=0) as a
