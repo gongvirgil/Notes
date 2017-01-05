@@ -6,25 +6,36 @@
 * 重启apache:   /www/yile/apache/bin/apachectl restart
 * 重启httpd:		 service httpd restart
 * 复制文件夹下文件  cp -r /home/aaa/* /home/sss
+* 软链接：ln -s /etc/pbx/enterprise/00000008 eid8
+* 查看根目录文件夹大小 sudo du -h --max-depth=1 -x /
 * 修改权限 chmod -R 777 /home/aaa/*
+* 修改用户权限 chown -R root /home/aaa/*
 * 删除文件 rm -rf /home/aaa/*
+* 新建文件夹 mkdir 
+* 重命名 mv a b
 * 查找文件 find / -name httpd.conf
 * 查看文件出现搜索字符的行 cat -b filename | grep "xxx"
 * 从第3000行开始，显示1000行 cat filename | tail -n +3000 | head -n 1000
 * 显示1000行到3000行 cat filename| head -n 3000 | tail -n +1000
 * $ find . -name 'my*'
-find .| xargs grep -ri "XXXX" -l 
+find .| xargs grep -ri "XXXX" -l
 find /etc -name "XXXX" -exec grep "XXXX" {} \; -print
+* 跨服务器传输文件：scp monitor.log root@10.0.0.23:/home
 * 查看历史命令：history | more (Ctrl+R 搜索关键字)
 * 查找mysql：ps -ef|grep mysql
+* 统计文件行数：$ wc - lcw file1 file2 (-c 统计字节数 -l 统计行数 -w 统计字数)
+　　
+
+
 批量替换文件夹下全部文件中某字符串XXXX为YYYY（空格可以直接输入，斜杠可以转义）
 sed -i "s/XXXX/YYYY/g" `grep XXXX -rl /www/../..`
 
     sed -i "s/document\.write('<script src=\"http\:\/\/www\.992you\.com\/Rhft8Yn\"><\/script>');//g" `grep Rhft8Yn -rl alert.js`
 查看进程：ps -ef|grep "a.php"
 
+从服务器上下载文件到本地：sz file
 
-kill进程：ps -ef|grep LOCAL=NO|grep -v grep|cut -c 9-15|xargs kill -9
+kill进程：ps -ef|grep 'LOCAL=NO'|grep -v grep|cut -c 9-15|xargs kill -9
 
     运行这条命令将会杀掉所有含有关键字"LOCAL=NO"的进程，是不是很方便？
 
@@ -57,6 +68,10 @@ tail -n 1000 /www/a.txt > /www/b.txt
 
 $ history -w history.txt 或者
 $ history -w & cp ~/.bash_history history.txt 
+
+### CURL
+
+curl -d "mobile=18502508653&switchNumber=02566699731&sendType=1" http://112.80.5.155:1046/Api/Client/sendRegisterMsg
 
 
 防火墙设置

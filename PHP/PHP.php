@@ -8,6 +8,10 @@ $num = sprintf("%.2f",$num);
 //时间戳转为日期
 js: new Date(parseInt('time') * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, "")
 php: date('Y-m-d H:i:s','time')
+//设置时区
+date_default_timezone_set('Asia/Shanghai');
+ini_set('date.timezone','Asia/Shanghai');
+
 //写入文件内容
       $fp = fopen($_SERVER ['DOCUMENT_ROOT']."/aa.txt","a+");
       fwrite($fp,$aa."\r\n");
@@ -27,13 +31,35 @@ iconv("utf-8","gbk",urldecode('%BB%F9%B1%BE%D7%CA%C1%CF%BD%F8%B6%C8'));
 
 $aaa = preg_match('/^[\x{4e00}-\x{9fa5}\w\s-#()（）]{1,60}+$/u',$_REQUEST['a']);
 
+sprintf("---%1\$s---%1\$s---%1\$s---","YY");
+
 //二维数组排序
 
   foreach ($card_list as $k => $v) {
       $volume[$k]  = $v['start_time'];
   }
   array_multisort($volume, SORT_DESC, $card_list);
-
+/**
+ * [guid 生成不重复的随机字符串]
+ * @return [type] [description]
+ */
+function guid(){
+    if (function_exists('com_create_guid')){
+        return com_create_guid();
+    }else{
+        mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+        $charid = strtoupper(md5(uniqid(rand(), true)));
+        $hyphen = chr(45);// "-"
+        $uuid = chr(123)// "{"
+                .substr($charid, 0, 8).$hyphen
+                .substr($charid, 8, 4).$hyphen
+                .substr($charid,12, 4).$hyphen
+                .substr($charid,16, 4).$hyphen
+                .substr($charid,20,12)
+                .chr(125);// "}"
+        return $uuid;
+    }
+}
 /**
  * [get_time 获取远程服务器时间戳]
  * @param  [type] $host [host]

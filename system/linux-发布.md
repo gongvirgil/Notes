@@ -162,3 +162,8 @@ apache2: Could not reliably determine the server's fully qualified domain name, 
    ...done.
 root@ubuntu:/etc/apache2/sites-enabled# ^C
 root@ubuntu:/etc/apache2/sites-enabled# 
+
+
+
+
+
