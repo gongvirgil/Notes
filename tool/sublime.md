@@ -35,7 +35,7 @@ selected+F12 				| 						| 跳转到定义处
 * FileDiffs
 * SublimeLinter
 * Monokai extended
-
+* Sublimerge
 
 ###Package Control
 
