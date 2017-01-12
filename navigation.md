@@ -30,6 +30,7 @@
 
 * [MySQL](./database/MySQL.md)
 * [MongoDB](./database/MongoDB.md)
+* [Redis](./database/Redis.md)
 
 [系统]()
 
