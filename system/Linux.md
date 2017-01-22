@@ -13,7 +13,7 @@
 * 删除文件 rm -rf /home/aaa/*
 * 新建文件夹 mkdir 
 * 重命名 mv a b
-* 查找文件 find / -name httpd.conf
+* 查找文件 find / -name 'httpd.conf'
 * 查看文件出现搜索字符的行 cat -b filename | grep "xxx"
 * 从第3000行开始，显示1000行 cat filename | tail -n +3000 | head -n 1000
 * 显示1000行到3000行 cat filename| head -n 3000 | tail -n +1000
