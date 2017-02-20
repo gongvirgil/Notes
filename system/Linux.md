@@ -13,7 +13,7 @@
 * 删除文件 rm -rf /home/aaa/*
 * 新建文件夹 mkdir 
 * 重命名 mv a b
-* 查找文件 find / -name 'httpd.conf'
+* 查找文件 find / -name 'httpd*'
 * 查看文件出现搜索字符的行 cat -b filename | grep "xxx"
 * 从第3000行开始，显示1000行 cat filename | tail -n +3000 | head -n 1000
 * 显示1000行到3000行 cat filename| head -n 3000 | tail -n +1000
@@ -41,6 +41,7 @@ sed -i "s/XXXX/YYYY/g" `grep XXXX -rl /www/../..`
 查看进程：ps -ef|grep "a.php"
 
 从服务器上下载文件到本地：sz file
+从本地上传文件到服务器：rz
 
 kill进程：ps -ef|grep 'LOCAL=NO'|grep -v grep|cut -c 9-15|xargs kill -9
 
