@@ -1,3 +1,10 @@
+# Ubuntu
+
+## 安装Ubuntu
+
+
+
+
 ##
 Ubuntu
 Mysql

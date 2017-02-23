@@ -68,6 +68,18 @@ MySQL/InnoDB有4种隔离级别：
 
 * 删除数据
 
+* 添加索引
+
+	ALTER TABLE `tablename` ADD INDEX `indexname`(`indexcolumn1`,`indexcolumn2`);
+
+* 删除索引
+
+　　DROP INDEX `indexname` ON `talbename`;
+　　ALTER TABLE `tablename` DROP INDEX `indexname`;
+
+　　ALTER TABLE tablename DROP PRIMARY KEY
+
+
 
 ## 大数据
 

@@ -12,6 +12,7 @@ mysql -uroot -p
 	mysql> show databases;
 	mysql> use xxx;
 	mysql> show tables;
+	
 ## 查看MySQL配置
 
 	SHOW VARIABLES LIKE "secure_file_priv";
