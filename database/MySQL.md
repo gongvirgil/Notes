@@ -12,7 +12,7 @@ mysql -uroot -p
 	mysql> show databases;
 	mysql> use xxx;
 	mysql> show tables;
-	
+
 ## 查看MySQL配置
 
 	SHOW VARIABLES LIKE "secure_file_priv";
@@ -31,6 +31,10 @@ mysql -uroot -p
 
 	删除添加的用户  
 	DELETE FROM mysql.user WHERE user='root' AND Host='123.126.23.70';
+
+## 修改账户密码
+
+	mysqladmin -u root -p password 'newpwd'
 
 ## MySQL变量
 

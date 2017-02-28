@@ -4,6 +4,12 @@
 
 ## 环境
 
+* Ubuntu
+* Apache
+* MySQL
+* Redis
+
+
 ## PHP
 
 ## MySQL
