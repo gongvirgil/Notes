@@ -2,7 +2,32 @@
 
 ## 安装Ubuntu
 
+## Samba共享
 
+* 安装samba
+
+	sudo apt-get install samba
+
+* 查看samba是否安装成功
+
+	sudo dpkg -l samba*
+
+* 创建共享目录
+
+	mkdir /home/xxx/share
+	chmod -R 777 /home/xxx/share
+
+* 添加samba用户
+	
+	//添加的samba用户首先必须是linux用户
+	useradd `username`
+	smbpasswd -a `username`
+	//smbpasswd常用
+	smbpasswd -a 增加用户（要增加的用户必须以是系统用户）
+	smbpasswd -d 冻结用户，就是这个用户不能再登录了
+	smbpasswd -e 解冻用户
+	smbpasswd -n 把用户的密码设置成空，要在global中写入 null passwords -true
+	smbpasswd -x 删除用户
 
 
 ##

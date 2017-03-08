@@ -48,6 +48,10 @@ MySQL/InnoDB有4种隔离级别：
 
 ## 基础操作
 
+* 查询引擎
+
+	SHOW ENGINES;
+
 * 创建库
 
 	CREATE DATABASE IF NOT EXISTS `dbname` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
@@ -103,6 +107,10 @@ MySQL/InnoDB有4种隔离级别：
 
 
 ## 大数据
+
+## 测试
+
+mysqlslap
 
 ## 优化
 
