@@ -29,6 +29,15 @@
 	smbpasswd -n 把用户的密码设置成空，要在global中写入 null passwords -true
 	smbpasswd -x 删除用户
 
+* 配置smb.conf
+	
+	vi /etc/samba/smb.conf
+	
+
+	security = user
+	[myshare]
+         comment = share
+         path = /home/xxx/share
 
 ##
 Ubuntu
