@@ -32,12 +32,15 @@
 * 配置smb.conf
 	
 	vi /etc/samba/smb.conf
-	
-
-	security = user
+	[global]
+	    security = user
 	[myshare]
-         comment = share
-         path = /home/xxx/share
+        comment = share
+        path = /home/xxx/share
+	    browseable = yes
+	    public = no
+	    writeable = yes
+
 
 ##
 Ubuntu
