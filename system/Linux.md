@@ -13,6 +13,8 @@
 * 删除文件 rm -rf /home/aaa/*
 * 新建文件夹 mkdir 
 * 重命名 mv a b
+查找目录：find /（查找范围） -name '查找关键字' -type d
+查找文件：find /（查找范围） -name 查找关键字 -print
 * 查找文件 find / -name 'httpd*'
 * 查看文件出现搜索字符的行 cat -b filename | grep "xxx"
 * 从第3000行开始，显示1000行 cat filename | tail -n +3000 | head -n 1000
