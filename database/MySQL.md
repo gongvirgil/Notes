@@ -47,8 +47,6 @@ mysql -uroot -p
 SELECT FLOOR((RAND() * 999999));
 字符串拼接
 SELECT CONCAT('','');
-md5加密
-SELECT md5('molier');   
 时间戳->date:
 SELECT UNIX_TIMESTAMP('2015-05-31');
 SELECT FROM_UNIXTIME(1234567890, '%Y-%m-%d %H:%i:%S');
@@ -86,7 +84,15 @@ SELECT	DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%S');
 
 某列不同值的个数：SELECT COUNT(DISTINCT task_name) FROM `talk_task`
 
+SELECT UPPER(str),UCASE(str);//转大写
+SELECT LOWER(str),LCASE(str);//转小写
+
+
 替换字符串：replace (`field_name`,'from_str','to_str') 
+
+select length(str);//字节数
+select CHAR_LENGTH(str);//字符数
+
 
 字符串截取：
 
