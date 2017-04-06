@@ -23,6 +23,7 @@ selected+F12 				| 						| 跳转到定义处
 
 * Package Control
 * Alignment (快捷键改为 ctrl+shift+a)
+* BracketHighlighter
 * ColorHighlighter
 * Colorpicker
 * DocBlockr
