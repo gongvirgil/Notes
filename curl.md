@@ -13,7 +13,7 @@
 * 上传文件
 	* curl -F "filename=@/path/filename.json" http://hostname/resource
 * 模拟`multipart/form-data`形式的`form`上传文件
-	* curl -F "a=1" -F "b=2" "filename=@/path/filename.json" http://hostname/resource
+	* curl -F "a=1" -F "b=2" -F "filename=@/path/filename.json" http://hostname/resource
 * 将网站的cookies信息保存到sugarcookies文件中
 	* curl -D sugarcookies http://hostname/resource
 * 使用上次保存的cookie信息
