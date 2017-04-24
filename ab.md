@@ -1,5 +1,7 @@
 # ab性能测试
 
+* ab -n1000 -c100 http://www.baidu.com
+
 ## 参数
 
 参数|说明

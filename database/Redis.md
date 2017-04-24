@@ -1,3 +1,120 @@
+# Redis
+
+* [redis](http://www.runoob.com/redis/redis-tutorial.html)
+
+## 使用场景
+
+* String
+    * 计数器应用 
+* List
+    * 取最新N个数据的操作
+    * 消息队列
+    * 删除与过滤
+    * 实时分析正在发生的情况，用于数据统计与防止垃圾邮件（结合Set）
+* Set
+    * Uniqe操作，获取某段时间所有数据排重值
+    * 实时系统，反垃圾系统
+    * 共同好友、二度好友
+    * 利用唯一性，可以统计访问网站的所有独立 IP
+    * 好友推荐的时候，根据 tag 求交集，大于某个 threshold 就可以推荐
+* Hashes
+    * 存储、读取、修改用户属性
+* Sorted Set
+    * 排行榜应用，取TOP N操作
+    * 需要精准设定过期时间的应用（时间戳作为Score）
+    * 带有权重的元素，比如一个游戏的用户得分排行榜
+    * 过期项目处理，按照时间排序
+* Redis解决秒杀/抢红包等高并发事务活动
+
+> 秒杀开始前30分钟把秒杀库存从数据库同步到Redis Sorted Set
+> 用户秒杀库存放入秒杀限制数长度的Sorted Set
+> 秒杀到指定秒杀数后，Sorted Set不在接受秒杀请求，并显示返回标识
+> 秒杀活动完全结束后，同步Redis数据到数据库，秒杀正式结束
+
+
+## 安装
+
+### 安装Redis
+
+    //下载安装包
+    wget http://download.redis.io/releases/redis-3.2.6.tar.gz
+    tar xzf redis-3.2.6.tar.gz
+    cd redis-3.2.6
+    //编译源程序
+    make 
+    cd src
+    make install PREFIX=/usr/local/redis
+    //移动配置文件到redis目录
+    mv redis-3.2.6/redis.conf /usr/local/redis/etc/redis.conf
+    //启动redis服务
+    /usr/local/redis/bin/redis-server /usr/local/redis/etc/redis.conf
+    //后台运行redis
+    vim /usr/local/redis/etc/redis.conf //将daemonize的值改为yes
+    //客户端连接
+        /usr/local/redis/bin/redis-cli 
+    //停止redis实例
+    /usr/local/redis/bin/redis-cli shutdown //或 kill redis-server
+    //redis开机自启
+    　　vim /etc/rc.local //加入/usr/local/redis/bin/redis-server /usr/local/redis/etc/redis.conf
+
+bin目录下的几个文件：
+
+* redis-benchmark：redis性能测试工具
+* redis-check-aof：检查aof日志的工具
+* redis-check-dump：检查rdb日志的工具
+* redis-cli：连接用的客户端
+* redis-server：redis服务进程
+
+### 安装php-redis扩展
+
+    //若`/usr/bin/phpize`不存在时，先安装phpize
+    apt-get install php5-dev
+
+    //下载扩展包
+    wget https://github.com/phpredis/phpredis/archive/2.2.4.tar.gz
+    tar xzf 2.2.4.tar.gz
+    cd phpredis-2.2.4
+    //php安装后的路径
+    /usr/bin/phpize             
+    ./configure --with-php-config=/usr/bin/php-config
+    make && make install
+    //修改php.ini
+    vi /etc/php5/apache2/php.ini
+    //加入
+    extension_dir="/usr/lib/php5/20090626/"
+    extension=redis.so
+    //重启php-fpm 或 apache。查看phpinfo信息，就能看到redis扩展。
+
+## 配置
+
+Redis的配置
+
+　　daemonize：如需要在后台运行，把该项的值改为yes
+　　pdifile：把pid文件放在/var/run/redis.pid，可以配置到其他地址
+　　bind：指定redis只接收来自该IP的请求，如果不设置，那么将处理所有请求，在生产环节中最好设置该项
+　　port：监听端口，默认为6379
+　　timeout：设置客户端连接时的超时时间，单位为秒
+　　loglevel：等级分为4级，debug，revbose，notice和warning。生产环境下一般开启notice
+　　logfile：配置log文件地址，默认使用标准输出，即打印在命令行终端的端口上
+　　database：设置数据库的个数，默认使用的数据库是0
+　　save：设置redis进行数据库镜像的频率
+　　rdbcompression：在进行镜像备份时，是否进行压缩
+　　dbfilename：镜像备份文件的文件名
+　　dir：数据库镜像备份的文件放置的路径
+　　slaveof：设置该数据库为其他数据库的从数据库
+　　masterauth：当主数据库连接需要密码验证时，在这里设定
+　　requirepass：设置客户端连接后进行任何其他指定前需要使用的密码
+　　maxclients：限制同时连接的客户端数量
+　　maxmemory：设置redis能够使用的最大内存
+　　appendonly：开启appendonly模式后，redis会把每一次所接收到的写操作都追加到appendonly.aof文件中，当redis重新启动时，会从该文件恢复出之前的状态
+　　appendfsync：设置appendonly.aof文件进行同步的频率
+　　vm_enabled：是否开启虚拟内存支持
+　　vm_swap_file：设置虚拟内存的交换文件的路径
+　　vm_max_momery：设置开启虚拟内存后，redis将使用的最大物理内存的大小，默认为0
+　　vm_page_size：设置虚拟内存页的大小
+　　vm_pages：设置交换文件的总的page数量
+　　vm_max_thrrads：设置vm IO同时使用的线程数量
+
 ## 基础命令及数据结构
 
 Redis是一个内存中的数据存储系统，可用作数据库、缓存或消息中间件等。  

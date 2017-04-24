@@ -1,3 +1,57 @@
+# MySQL
+
+## 基础操作
+
+* 查询引擎
+	SHOW ENGINES;
+
+* 创建库
+	* CREATE DATABASE IF NOT EXISTS `dbname` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+* 创建表
+```
+	CREATE TABLE `tablename` (
+		`id` int(11) NOT NULL AUTO_INCREMENT,
+		PRIMARY KEY (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+```
+* 清空表
+	* TRUNCATE TABLE `tablename`;
+* 删除表
+	* DROP TABLE IF EXISTS `tablename`;
+
+* 插入数据
+	* INSERT INTO `tablename`(id) VALUES(1);
+	* INSERT INTO `tablename` VALUES(2);
+* 修改数据
+* 删除数据
+
+* 添加索引
+	* ALTER TABLE `tablename` ADD INDEX `indexname`(`indexcolumn1`,`indexcolumn2`);
+* 删除索引
+	* DROP INDEX `indexname` ON `talbename`;
+	* ALTER TABLE `tablename` DROP INDEX `indexname`;
+	* ALTER TABLE tablename DROP PRIMARY KEY;
+
+* 添加字段
+	* ALTER TABLE `tablename` ADD `columnname` int(11) NOT NULL DEFAULT 0 after `columnname1`;
+* 修改字段
+* 删除字段
+
+* 创建存储过程
+```
+	CREATE DEFINER=`root`@`localhost` PROCEDURE `procedurename`()
+	BEGIN
+	END
+```
+* 调用存储过程
+	* CALL `dbname`.`procedurename`();
+
+* 查看存储过程
+	* SHOW CREATE PROCEDURE `dbname`.`procedurename`;
+* 删除存储过程
+
+
 ## 存储引擎
 
 * MyISAM
@@ -45,66 +99,6 @@ MySQL/InnoDB有4种隔离级别：
 * `Read Committed (RC)` : 快照读忽略。针对当前读，RC隔离级别保证对读取到的记录加锁 (记录锁)，存在幻读现象。
 * `Repeatable Read (RR)` : 快照读忽略。针对当前读，RR隔离级别保证对读取到的记录加锁 (记录锁)，同时保证对读取的范围加锁，新的满足查询条件的记录不能够插入 (间隙锁)，不存在幻读现象。
 * `Serializable` : 从MVCC并发控制退化为基于锁的并发控制。不区别快照读与当前读，所有的读操作均为当前读，读加读锁 (S锁)，写加写锁 (X锁)。Serializable隔离级别下，读写冲突，因此并发度急剧下降，在MySQL/InnoDB下不建议使用。
-
-## 基础操作
-
-* 查询引擎
-
-	SHOW ENGINES;
-
-* 创建库
-
-	CREATE DATABASE IF NOT EXISTS `dbname` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-
-* 创建表
-
-	CREATE TABLE `mydoc_test` (
-	  `id` int(11) NOT NULL AUTO_INCREMENT,
-	  PRIMARY KEY (`id`)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-* 删减表
-
-	DROP TABLE IF EXISTS `abc`;//删除表
-	TRUNCATE TABLE `abc`;//清空表
-
-* 插入数据
-	
-	INSERT INTO `mydoc_test`(id) VALUES(1);
-	INSERT INTO `mydoc_test` VALUES(2);
-
-* 修改数据
-
-* 删除数据
-
-* 添加索引
-
-	ALTER TABLE `tablename` ADD INDEX `indexname`(`indexcolumn1`,`indexcolumn2`);
-
-* 删除索引
-
-　　DROP INDEX `indexname` ON `talbename`;
-　　ALTER TABLE `tablename` DROP INDEX `indexname`;
-
-　　ALTER TABLE tablename DROP PRIMARY KEY
-
-* 创建存储过程
-
-	CREATE DEFINER=`root`@`localhost` PROCEDURE `procedurename`()
-	BEGIN
-	END
-
-* 调用存储过程
-
-	CALL `dbname`.`procedurename`();
-
-* 查看存储过程
-
-	SHOW CREATE PROCEDURE `dbname`.`procedurename`;
-
-* 删除存储过程
-
-
 
 ## 大数据
 
