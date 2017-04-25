@@ -53,6 +53,7 @@ SELECT FROM_UNIXTIME(1234567890, '%Y-%m-%d %H:%i:%S');
 SELECT	DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%S');
 联表删除：DELETE FROM A  USING A,B WHERE A.xxx=B.xx;
 清除缓存：reset query cache;
+HAVING子句：SELECT a,SUM(b) FROM A GROUP BY a HAVING SUM(b)>1;
 
 	%M 月名字(January……December)
 	%W 星期名字(Sunday……Saturday)

@@ -5,6 +5,9 @@ header("Content-type: text/html; charset=utf-8");
 //保留两位小数
 $number = sprintf("%1\$.2f",$number);
 $num = sprintf("%.2f",$num);
+//前补0
+sprintf("%04d", 1);//生成4位数，不足前面补0 
+sprintf("%04s", '1');//生成4位字符串，不足前面补0 
 //时间戳转为日期
 js: new Date(parseInt('time') * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, "")
 php: date('Y-m-d H:i:s','time')
@@ -33,6 +36,13 @@ $aaa = preg_match('/^[\x{4e00}-\x{9fa5}\w\s-#()（）]{1,60}+$/u',$_REQUEST['a']
 
 sprintf("---%1\$s---%1\$s---%1\$s---","YY");
 
+* 通过设置服务器的环境变量，来区分开发/测试/生成环境。
+  Apache命令：SetEnv RUN_MODE development
+  Nginx命令：fastcgi_param RUN_MODE development;
+  PHP获取环境变量 $runMode = $_SERVER['RUN_MODE'];
+
+
+
 
 binoct();//转为八进制
 bindec();//转为十进制
@@ -54,7 +64,7 @@ binhex();//转为十六进制
   * F8A1-FEFE，码位 658 个。
   * A140-A7A0，码位 672 个。尽管对用户开放，但限制使用，因为不排除未来在此区域增补新字符的可能性。
 
-
+\uxxxx这种格式是Unicode写法，表示一个字符，其中xxxx表示一个16进制数字，范围所0～65535.
 
 //二维数组排序
 
