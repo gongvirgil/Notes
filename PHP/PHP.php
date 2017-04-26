@@ -18,7 +18,15 @@ ini_set('date.timezone','Asia/Shanghai');
 //写入文件内容
       $fp = fopen($_SERVER ['DOCUMENT_ROOT']."/aa.txt","a+");
       fwrite($fp,$aa."\r\n");
-      fclose($fp);  
+      fclose($fp); 
+//逐行读取文件内容
+      $handle = @fopen("/var/aa.txt", "r");
+      if ($handle) {
+          while (!feof($handle)) {
+              $buffer = fgets($handle, 4096);
+          }
+          fclose($handle);
+      }
 //去掉BOM头字符串    
 $aaa = str_replace(urldecode('%EF%BB%BF'), '', $aaaa);
 //连续多个空格替换成一个
