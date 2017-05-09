@@ -1,3 +1,9 @@
+# MongoDB
+
+## 安装
+
+## 命令
+
 启动命令：cd C:\Program Files\mongodb\bin
 	  ->  mongod -dbpath "C:\Program Files\mongodb\data" 
 
