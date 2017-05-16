@@ -108,7 +108,7 @@ service iptables start
 
 
 
-
+## 定时任务
 
 crontab定时执行任务
     编辑：crontab -e
@@ -123,10 +123,40 @@ crontab定时执行任务
 
 如果进入了记录状态（recording）不要慌，按esc，然后按q，就可以退出recording了。
 
+## 进程
+
 显示进程pid：
 ps -e
 结束进程：
 kiss -9 pid
+
+## 系统日志
+
+系统日志一般都存在/var/log下
+常用的系统日志如下:
+核心启动日志:/var/log/dmesg
+系统报错日志:/var/log/messages
+邮件系统日志:/var/log/maillog
+FTP系统日志:/var/log/xferlog
+安全信息和系统登录与网络连接的信息:/var/log/secure
+登录记录:/var/log/wtmp      记录登录者讯录，二进制文件，须用last来读取内容    who -u /var/log/wtmp 查看信息
+News日志:/var/log/spooler
+RPM软件包:/var/log/rpmpkgs
+XFree86日志:/var/log/XFree86.0.log
+引导日志:/var/log/boot.log   记录开机启动讯息，dmesg | more
+cron(定制任务日志)日志:/var/log/cron
+ 
+安全信息和系统登录与网络连接的信息:/var/log/secure
+ 
+文件 /var/run/utmp 记录現在登入的用戶。
+文件 /var/log/wtmp 记录所有的登入和登出。
+文件 /var/log/lastlog 记录每個用戶最後的登入信息。
+文件 /var/log/btmp 记录錯誤的登入嘗試。
+ 
+less /var/log/auth.log 需要身份确认的操作
+
+
+
 Apache配置
 <VirtualHost *:80>
   ServerName 56775.com
@@ -142,6 +172,10 @@ Apache配置
     allow from all
   </Directory>
 </VirtualHost>
+
+
+## nfs
+
 平台开启nfs service nfs start
 douwan365开启nfs(all):
 
