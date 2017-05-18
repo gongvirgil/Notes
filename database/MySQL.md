@@ -102,6 +102,11 @@ select CHAR_LENGTH(str);//字符数
 * substring(str, pos); substring(str, pos, len)
 * SUBSTRING_INDEX(str,delim,count) select substring_index('www.sqlstudy.com.cn', '.', 2); //www.sqlstudy
 
+* SELECT TRIM(' bar '); //默认删除前后空格
+* SELECT TRIM(LEADING ',' FROM ',,barxxx');
+* SELECT TRIM(BOTH ',' FROM ',,bar,,');
+* SELECT TRIM(TRAILING ',' FROM 'bar,,');
+
 
 * 前补0(LPAD)：select LPAD(uid, 8, 0) from uc_members where uid = '100015';//结果：uid: 00100015
 * 后补0(RPAD)：select RPAD(uid, 8, 0),username from uc_members where uid = '100015';
