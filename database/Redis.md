@@ -80,6 +80,7 @@ bin目录下的几个文件：
     make && make install
     //修改php.ini
     vi /etc/php5/apache2/php.ini
+    vi /etc/php5/cli/php.ini
     //加入
     extension_dir="/usr/lib/php5/20090626/"
     extension=redis.so

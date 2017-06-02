@@ -22,6 +22,8 @@
 - - - -
 * [PHP相关](./php/PHP-Something.md)
 * [正则表达式](./php/preg.md)
+- - - -
+* [php-redis](./php/php-redis.md)
 
 [Python](Python.md)
 [Nodejs](Nodejs.md)

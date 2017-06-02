@@ -8,6 +8,8 @@ $num = sprintf("%.2f",$num);
 //前补0
 sprintf("%04d", 1);//生成4位数，不足前面补0 
 sprintf("%04s", '1');//生成4位字符串，不足前面补0 
+//like sprintf %%
+sprintf(" AND (name like '%%%1\$s%%' OR province like '%%%1\$s%%')",$params['searchStr'])
 //时间戳转为日期
 js: new Date(parseInt('time') * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, "")
 php: date('Y-m-d H:i:s','time')
