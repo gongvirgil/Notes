@@ -131,3 +131,7 @@ git log
 git branch recover_branch[新分支] commit_id
 
 新建一个分支，丢失的东西给恢复到了recover_branch分支上了。
+
+### 大小写敏感
+
+	git config core.ignorecase false
