@@ -111,6 +111,11 @@ select CHAR_LENGTH(str);//字符数
 * 前补0(LPAD)：select LPAD(uid, 8, 0) from uc_members where uid = '100015';//结果：uid: 00100015
 * 后补0(RPAD)：select RPAD(uid, 8, 0),username from uc_members where uid = '100015';
 
+* 查询不连续的数字
+
+	SELECT number FROM (
+		SELECT number FROM (SELECT number FROM talk_test) tmp WHERE NOT EXISTS (SELECT 1 FROM talk_test WHERE number=tmp.number-1) OR NOT EXISTS (SELECT 1 FROM talk_test WHERE number=tmp.number+1)
+	) t ORDER BY number ASC;
 
 select
 月份,
