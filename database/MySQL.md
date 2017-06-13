@@ -117,6 +117,14 @@ select CHAR_LENGTH(str);//字符数
 		SELECT number FROM (SELECT number FROM talk_test) tmp WHERE NOT EXISTS (SELECT 1 FROM talk_test WHERE number=tmp.number-1) OR NOT EXISTS (SELECT 1 FROM talk_test WHERE number=tmp.number+1)
 	) t ORDER BY number ASC;
 
+	SELECT a.number as number1,b.number as number2,a.i FROM 
+
+	( SELECT number,(@i:=@i+1) as i FROM ( SELECT number FROM talk_test where `status`=0 ) tmp,(SELECT @i:=0) i WHERE NOT EXISTS (SELECT 1 FROM talk_test WHERE `status`=0 and number=tmp.number-1) ) a
+
+	LEFT JOIN
+
+	( SELECT number,(@j:=@j+1) as j FROM ( SELECT number FROM talk_test where `status`=0 ) tmp1,(SELECT @j:=0) i WHERE NOT EXISTS (SELECT 1 FROM talk_test WHERE `status`=0 and number=tmp1.number+1) ) b ON a.i = b.j;
+
 select
 月份,
 sum (case when 销售人员='姓名1' then 销售数量*产品单价 else 0 end) as 姓名1销售额,
