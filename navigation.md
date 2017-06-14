@@ -1,19 +1,23 @@
-# NoteBooks
+# Notes
 
 [首页](index.md)
 
 [开发规范](convention.md)
 
-[前端开发]()
+[开发准则](develop.md)
 
-* [UI](./front-end/UI.md)
-* [Html](./front-end/Html.md)
-* [Css](./front-end/Css.md)
-* [Bootstrap](./front-end/Bootstrap.md)
-* [Javascript](./front-end/Javascript.md)
-* [jQuery](./front-end/jQuery.md)
-- - - -
-* [Others](./front-end/index.md)
+[系统]()
+
+* [Windows](./system/Windows.md)
+* [Linux](./system/Linux.md)
+* [Mac](./system/Mac.md)
+
+[语言]()
+
+* [Python](./language/Python.md)
+* [Nodejs](./language/Nodejs.md)
+* [英语](./language/English.md)
+* [日语](./language/Japanese.md)
 
 [PHP]()
 
@@ -26,9 +30,8 @@
 * [正则表达式](./php/preg.md)
 - - - -
 * [php-redis](./php/php-redis.md)
-
-[Python](Python.md)
-[Nodejs](Nodejs.md)
+- - - -
+* [dedeCMS](./php/dede.md)
 
 [数据库]()
 
@@ -36,18 +39,11 @@
 * [MongoDB](./database/MongoDB.md)
 * [Redis](./database/Redis.md)
 
-[系统]()
-
-* [Windows](./system/Windows.md)
-* [Linux](./system/Linux.md)
-* [iOS](./system/iOS.md)
-* [Mac](./system/Mac.md)
-
 [浏览器]()
 
-* [Firefox](Firefox.md)
-* [Chrome](Chrome.md)
-* [IE](IE.md)
+* [Firefox](./browser/Firefox.md)
+* [Chrome](./browser/Chrome.md)
+* [IE](./browser/IE.md)
 
 [工具]()
 
@@ -55,7 +51,30 @@
 * [Git](./tool/Git.md)
 * [SVN](./tool/SVN.md)
 * [Sublime text3](./tool/sublime.md)
+* [Docker](./tool/Docker.md)
 * [Excel](./tool/Excel.md)
+
+[前端开发]()
+
+* [UI](./front-end/UI.md)
+* [Html](./front-end/Html.md)
+* [Css](./front-end/Css.md)
+* [Bootstrap](./front-end/Bootstrap.md)
+* [Javascript](./front-end/Javascript.md)
+- - - -
+* [jQuery](./front-end/jQuery.md)
+* [vue](./front-end/vue.md)
+- - - -
+* [Hack](./front-end/hack.md)
+* [canvas](./front-end/canvas.md)
+- - - -
+* [Others](./front-end/index.md)
+
+[客户端]()
+
+* [PC](./client/PC.md)
+* [iOS](./client/iOS.md)
+* [Android](./client/Android.md)
 
 [常用对照表]()
 
@@ -66,7 +85,3 @@
 * [RGB Colors](./form/RGB-Colors.md)
 * [Web Fonts](./form/Web-Fonts.md)
 
-[语言]()
-
-* [英语](./language/English.md)
-* [日语](./language/Japanese.md)
