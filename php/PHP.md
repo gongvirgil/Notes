@@ -1,3 +1,6 @@
+# PHP
+
+```
 <?php
 header("Content-type: text/html; charset=utf-8");
 //正则
@@ -301,7 +304,7 @@ discuz authcode加密
     return $true;
   }
 ?>
-
+```
 
 1.基本的判断函数
 
