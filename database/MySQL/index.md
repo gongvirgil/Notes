@@ -21,15 +21,18 @@
 	* INSERT INTO `tablename`(id) VALUES(1);
 	* INSERT INTO `tablename` VALUES(2);
 * 修改数据
-	* UPDATE `tablename` SET `columnname1`=2 WHERE `columnname2`=1
+	* UPDATE `tablename` SET `columnname1`=2 WHERE `columnname2`=1;
 * 删除数据
-	* DELETE FROM `tablename` WHERE `columnname`=1
+	* DELETE FROM `tablename` WHERE `columnname`=1;
 * 添加字段
 	* ALTER TABLE `tablename` ADD `columnname` int(11) NOT NULL DEFAULT 0 after `columnname1`;
 * 修改字段
-	* 修改字段类型 ALTER TABLE `tablename` ALTER COLUMN `columnname` `new_data_type`
+	* 修改字段名称 ALTER TABLE `tablename` CHANGE `columnname1` `columnname2` CHAR(32) NOT NULL DEFAULT '';
+	* 修改字段属性 ALTER TABLE `tablename` MODIFY `columnname` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '';//修改时需带完整性约束条件
 * 删除字段
-	* ALTER TABLE `tablename` DROP COLUMN `columnname`     
+	* ALTER TABLE `tablename` DROP COLUMN `columnname`;   
+* 修改自增长的值
+	* ALTER TABLE `tablename` AUTO_INCREMENT=1;
 
 ## 存储引擎
 
@@ -40,6 +43,8 @@ MySQL5.5以后默认使用InnoDB存储引擎
 
 * 查询引擎
 	* SHOW ENGINES;
+* 修改存储引擎
+		* ALTER TABLE `tablename` ENGINE=MyISAM;
 
 ## 索引
 
@@ -48,7 +53,8 @@ MySQL5.5以后默认使用InnoDB存储引擎
 * 删除索引
 	* DROP INDEX `indexname` ON `talbename`;
 	* ALTER TABLE `tablename` DROP INDEX `indexname`;
-	* ALTER TABLE tablename DROP PRIMARY KEY;
+	* ALTER TABLE `tablename` DROP KEY `indexname`;
+	* 删除主键: ALTER TABLE `tablename` DROP PRIMARY KEY;//删除自增长属性: ALTER TABLE `tablename` MODIFY id INT UNSIGNED;
 
 ## 事务
 

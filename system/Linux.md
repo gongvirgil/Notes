@@ -20,7 +20,7 @@
 * 从第3000行开始，显示1000行 cat filename | tail -n +3000 | head -n 1000
 * 显示1000行到3000行 cat filename| head -n 3000 | tail -n +1000
 * $ find . -name 'my*'
-find .| xargs grep -ri "XXXX" -l
+* 在某个目录下搜索出现搜索字符的文件 find .| xargs grep -ri "XXXX" -l
 find /etc -name "XXXX" -exec grep "XXXX" {} \; -print
 * 跨服务器传输文件：scp monitor.log root@10.0.0.23:/home
 * 查看历史命令：history | more (Ctrl+R 搜索关键字)
