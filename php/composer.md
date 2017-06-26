@@ -200,7 +200,7 @@ php composer.phar update vendor/*
 --lock: 仅更新 lock 文件的 hash，取消有关 lock 文件过时的警告。
 --with-dependencies 同时更新白名单内包的依赖关系，这将进行递归更新。
 
-申明依赖 require
+## 申明依赖 require
 
 require 命令增加新的依赖包到当前目录的 composer.json 文件中。
 
@@ -220,7 +220,7 @@ php composer.phar require vendor/package:2.* vendor/package2:dev-master
 --no-progress: 移除进度信息，这可以避免一些不处理换行的终端或脚本出现混乱的显示。
 --update-with-dependencies 一并更新新装包的依赖。
 
-全局执行 global
+## 全局执行 global
 
 global 命令允许你在 COMPOSER_HOME 目录下执行其它命令，像 install、require 或 update。
 
@@ -231,7 +231,7 @@ php composer.phar global require fabpot/php-cs-fixer:dev-master
 
 php composer.phar global update
 
-搜索 search
+## 搜索 search
 
 search 命令允许你为当前项目搜索依赖包，通常它只搜索 packagist.org 上的包，你可以简单的输入你的搜索条件。
 
@@ -243,7 +243,7 @@ php composer.phar search monolog
 
 --only-name (-N): 仅针对指定的名称搜索（完全匹配）。
 
-展示 show
+## 展示 show
 
 列出所有可用的软件包，你可以使用 show 命令。
 
@@ -276,7 +276,7 @@ php composer.phar show monolog/monolog 1.0.2
 --platform (-p): 仅列出平台软件包（PHP 与它的扩展）。
 --self (-s): 仅列出当前项目信息。
 
-依赖性检测 depends
+## 依赖性检测 depends
 
 depends 命令可以查出已安装在你项目中的某个包，是否正在被其它的包所依赖，并列出他们。
 
@@ -292,7 +292,7 @@ symfony/symfony
 
 --link-type: 检测的类型，默认为 require 也可以是 require-dev。
 
-有效性检测 validate
+## 有效性检测 validate
 
 在提交 composer.json 文件，和创建 tag 前，你应该始终运行 validate 命令。它将检测你的 composer.json文件是否是有效的
 
@@ -301,7 +301,7 @@ php composer.phar validate
 
 --no-check-all: Composer 是否进行完整的校验。
 
-依赖包状态检测 status
+## 依赖包状态检测 status
 
 如果你经常修改依赖包里的代码，并且它们是从 source（自定义源）进行安装的，那么 status 命令允许你进行检查，如果你有任何本地的更改它将会给予提示。
 
@@ -314,7 +314,7 @@ You have changes in the following dependencies:
 vendor/seld/jsonlint:
     M README.mdown
 
-自我更新 self-update
+## 自我更新 self-update
 
 将 Composer 自身升级到最新版本，只需要运行 self-update 命令。它将替换你的 composer.phar 文件到最新版本。
 
@@ -337,7 +337,7 @@ config 命令允许你编辑 Composer 的一些基本设置，无论是本地的
 
 php composer.phar config --list
 
-更改配置-使用方法
+## 更改配置-使用方法
 
 config [options] [setting-key] [setting-value1] ... [setting-valueN]
 
