@@ -54,7 +54,13 @@ sprintf("---%1\$s---%1\$s---%1\$s---","YY");
   Nginx命令：fastcgi_param RUN_MODE development;
   PHP获取环境变量 $runMode = $_SERVER['RUN_MODE'];
 
-
+//不固定参数方法
+function myfun() {  
+  $numargs = func_num_args();  
+  echo "参数个数: $numargs\n";  
+  $args = func_get_args();//获得传入的所有参数的数组  
+  var_export($args);  
+} 
 
 
 binoct();//转为八进制
