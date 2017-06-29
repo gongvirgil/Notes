@@ -20,6 +20,13 @@
 
 	apt-get install vim
 
+### ssh
+
+	sudo apt-get install opensshd-server
+	sudo apt-get install opensshd-client
+	//配置文件
+	vim /etc/ssh/sshd_config
+
 ### git或svn
 
 	apt install subversion
