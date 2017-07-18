@@ -79,6 +79,11 @@ tail -n 1000 /www/a.txt > /www/b.txt
 $ history -w history.txt 或者
 $ history -w & cp ~/.bash_history history.txt 
 
+通过apache访问日志access.log 统计IP和每个地址访问的次数，按访问量列出前10名
+
+    cat /var/log/apache2/access.log | awk '{print  $1}' |sort| uniq -c |sort -rn |head -10
+
+
 ### CURL
 
 curl -d "mobile=18502508653&switchNumber=02566699731&sendType=1" http://112.80.5.155:1046/Api/Client/sendRegisterMsg
