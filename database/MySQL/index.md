@@ -20,6 +20,7 @@
 * 插入数据
 	* INSERT INTO `tablename`(id) VALUES(1);
 	* INSERT INTO `tablename` VALUES(2);
+	* INSERT INTO `tablename2`(`columnname`) SELECT `columnname` FROM `tablename1`
 * 修改数据
 	* UPDATE `tablename` SET `columnname1`=2 WHERE `columnname2`=1;
 * 删除数据
