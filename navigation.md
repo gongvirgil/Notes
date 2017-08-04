@@ -21,6 +21,8 @@
 
 [PHP]()
 
+* [首页](./php/index.md)
+- - - -
 * [原生PHP](./php/PHP.md)
 * [ThinkPHP](./php/ThinkPHP.md)
 - - - -
