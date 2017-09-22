@@ -1,3 +1,30 @@
+## 全局ajax捕捉错误
+
+    $(document).ajaxError(function(event, XMLHttpRequest, ajaxOptions, thrownError) {
+        if (XMLHttpRequest.status == "401") {
+            layer.confirm('长时间未操作，请重新登录', {
+                closeBtn: 0,
+                btn: ['确定']
+              }, function(index) {
+                layer.close(index);
+                window.location.reload();
+              });
+            return;
+        }
+        if (XMLHttpRequest.status == "403") {
+            layer.confirm('您无此页面权限，请进行刷新', {
+                closeBtn: 0,
+                btn: ['确定']
+              }, function(index) {
+                layer.close(index);
+                window.location.reload();
+              });
+            return;
+        }
+        //$( "div.log" ).text( "Triggered ajaxError handler." );
+        //window.alert("请求服务器发生错误，请重试，如果失败请联系管理员。");
+        //layer.msg('请求服务器发生错误，请重试，如果失败请联系管理员。');
+    });
 
 ##js一些写法
 

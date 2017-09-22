@@ -62,6 +62,12 @@ function myfun() {
   var_export($args);  
 } 
 
+//异常
+try {
+  throw new Exception("XXX");
+} catch (Exception $e) {
+  echo $e->getMessage();
+}
 
 binoct();//转为八进制
 bindec();//转为十进制

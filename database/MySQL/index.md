@@ -45,10 +45,12 @@ MySQL5.5以后默认使用InnoDB存储引擎
 * 查询引擎
 	* SHOW ENGINES;
 * 修改存储引擎
-		* ALTER TABLE `tablename` ENGINE=MyISAM;
-
+	* ALTER TABLE `tablename` ENGINE=MyISAM;
+	* ALTER TABLE `tablename` ENGINE=InnoDB;
+	
 ## 索引
 
+* [索引](./database/MySQL/Indexes.md)
 * 添加索引
 	* ALTER TABLE `tablename` ADD INDEX `indexname`(`indexcolumn1`,`indexcolumn2`);
 * 删除索引
@@ -58,6 +60,8 @@ MySQL5.5以后默认使用InnoDB存储引擎
 	* 删除主键: ALTER TABLE `tablename` DROP PRIMARY KEY;//删除自增长属性: ALTER TABLE `tablename` MODIFY id INT UNSIGNED;
 
 ## 事务
+
+* [事务](./database/MySQL/transaction.md)
 
 MySQL的事务支持不是绑定在MySQL服务器本身，而是与存储引擎相关，MyISAM不支持事务，用于只读程序提高性能，InnoDB支持ACID事务、行级锁、并发，Berkeley DB支持事务。
 
