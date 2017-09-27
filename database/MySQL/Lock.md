@@ -36,26 +36,25 @@ innodb_lock_waits  ## 锁等待的对应关系
 ## 当前出现的锁-information_schema.INNODB_LOCKS
 
 
-| Field       | Type                | Null | Key | Default | Comment |
-|-------------|---------------------|------|-----|---------|---------|
-| lock_id     | varchar(81)         | NO   |     |         |       |
-| lock_trx_id | varchar(18)         | NO   |     |         |       |
-| lock_mode   | varchar(32)         | NO   |     |         |       |
-| lock_type   | varchar(32)         | NO   |     |         |       |
-| lock_table  | varchar(1024)       | NO   |     |         |       |
-| lock_index  | varchar(1024)       | YES  |     | NULL    |       |
-| lock_space  | bigint(21) unsigned | YES  |     | NULL    |       |
-| lock_page   | bigint(21) unsigned | YES  |     | NULL    |       |
-| lock_rec    | bigint(21) unsigned | YES  |     | NULL    |       |
-| lock_data   | varchar(8192)       | YES  |     | NULL    |       |
-
+| Field       | Comment |
+|-------------|---------|
+| lock_id     | 锁ID			|
+| lock_trx_id | 拥有锁的事务ID	|
+| lock_mode   | 锁模式	|
+| lock_type   | 锁类型	|
+| lock_table  | 被锁的表	|
+| lock_index  | 被锁的索引	|
+| lock_space  | 被锁的表空间号	|
+| lock_page   | 被锁的页号	|
+| lock_rec    | 被锁的记录号	|
+| lock_data   | 被锁的数据	|
 
 ## 锁等待的对应关系-information_schema.INNODB_LOCK_WAITS
 
 
-| Field             | Type        | Null | Key | Default | Comment |
-|-------------------|-------------|------|-----|---------|---------|
-| requesting_trx_id | varchar(18) | NO   |     |         |       |
-| requested_lock_id | varchar(81) | NO   |     |         |       |
-| blocking_trx_id   | varchar(18) | NO   |     |         |       |
-| blocking_lock_id  | varchar(81) | NO   |     |         |       |
+| Field             | Comment |
+|-------------------|---------|
+| requesting_trx_id | 请求锁的事务ID	|
+| requested_lock_id | 请求锁的锁ID	|
+| blocking_trx_id   | 当前拥有锁的事务ID	|
+| blocking_lock_id  | 当前拥有锁的锁ID	|

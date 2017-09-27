@@ -14,6 +14,22 @@
 
 	apt-cache show `package-name`
 
+
+> 查看CPU
+
+* 查看CPU个数: cat /proc/cpuinfo | grep "physical id" | uniq | wc -l
+* 查看CPU核数: cat /proc/cpuinfo | grep "cpu cores" | uniq 
+* 查看CPU型号: cat /proc/cpuinfo | grep 'model name' |uniq
+
+> 查看内存
+
+* 查看内存总数: cat /proc/meminfo | grep MemTotal
+* 查看内存条数: dmidecode |grep -A16 "Memory Device$"
+
+> 查看硬盘
+
+* 查看硬盘大小: fdisk -l | grep Disk
+
 ## 安装工具
 
 ### vim
@@ -70,6 +86,9 @@
 
 ## 安装php扩展
 
+	//查看已安装的扩展
+	php -m
+	//常用扩展
 	apt install php-curl
 	apt install php-mbstring
 	apt-get install libapache2-mod-php7.0

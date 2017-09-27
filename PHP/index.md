@@ -3,6 +3,7 @@
 ## 相关
 
 * [PHPer](./php/phper.md)
+* [php.ini](./php/php-ini.md)
 * [环境](./environment.md)
 * [Linux](./system/linux/index.md)
 * [Apache](./system/apache/index.md)

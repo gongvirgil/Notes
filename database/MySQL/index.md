@@ -28,8 +28,9 @@
 * 添加字段
 	* ALTER TABLE `tablename` ADD `columnname` int(11) NOT NULL DEFAULT 0 after `columnname1`;
 * 修改字段
-	* 修改字段名称 ALTER TABLE `tablename` CHANGE `columnname1` `columnname2` CHAR(32) NOT NULL DEFAULT '';
-	* 修改字段属性 ALTER TABLE `tablename` MODIFY `columnname` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '';//修改时需带完整性约束条件
+	* 修改字段名称: ALTER TABLE `tablename` CHANGE `columnname1` `columnname2` CHAR(32) NOT NULL DEFAULT '';
+	* 修改字段属性: ALTER TABLE `tablename` MODIFY `columnname` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '';//修改时需带完整性约束条件
+	* 修改字段自增长属性: ALTER TABLE `tablename` MODIFY `columnname` int(11) NOT NULL AUTO_INCREMENT;
 * 删除字段
 	* ALTER TABLE `tablename` DROP COLUMN `columnname`;   
 * 修改自增长的值
@@ -47,17 +48,20 @@ MySQL5.5以后默认使用InnoDB存储引擎
 * 修改存储引擎
 	* ALTER TABLE `tablename` ENGINE=MyISAM;
 	* ALTER TABLE `tablename` ENGINE=InnoDB;
-	
-## 索引
+
+## 键&索引
 
 * [索引](./database/MySQL/Indexes.md)
 * 添加索引
 	* ALTER TABLE `tablename` ADD INDEX `indexname`(`indexcolumn1`,`indexcolumn2`);
+	* ALTER TABLE `tablename` ADD KEY `indexname`(`indexcolumn1`,`indexcolumn2`);
+	* ALTER TABLE `tablename` ADD UNIQUE KEY `indexname`(`indexcolumn1`,`indexcolumn2`);
+	* ALTER TABLE `tablename` ADD PRIMARY KEY `indexname`(`indexcolumn1`,`indexcolumn2`);
 * 删除索引
 	* DROP INDEX `indexname` ON `talbename`;
 	* ALTER TABLE `tablename` DROP INDEX `indexname`;
 	* ALTER TABLE `tablename` DROP KEY `indexname`;
-	* 删除主键: ALTER TABLE `tablename` DROP PRIMARY KEY;//删除自增长属性: ALTER TABLE `tablename` MODIFY id INT UNSIGNED;
+	* 删除主键: ALTER TABLE `tablename` DROP PRIMARY KEY;//先删除自增长属性: ALTER TABLE `tablename` MODIFY `id` INT UNSIGNED;
 
 ## 事务
 

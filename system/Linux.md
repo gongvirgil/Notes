@@ -6,6 +6,11 @@
 * 重启apache:   /www/yile/apache/bin/apachectl restart
 * 重启httpd:		 service httpd restart
 * 复制文件夹下文件  cp -r /home/aaa/* /home/sss
+    * 目录合并且覆盖：cp -frap /new/* /old/
+    * -f  强制覆盖，不询问yes/no（-i的默认的，即默认为交互模式，询问是否覆盖）
+    * -r  递归复制，包含目录
+    * -a  做一个备份，这里可以不用这个参数，我们可以先备份整个test目录
+    * -p  保持新文件的属性不变
 * 软链接：ln -s /etc/pbx/enterprise/00000008 eid8
 * 查看根目录文件夹大小 sudo du -h --max-depth=1 -x /
 * 修改权限 chmod -R 777 /home/aaa/*
