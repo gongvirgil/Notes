@@ -23,7 +23,10 @@
 * 查找文件 find / -name 'httpd*'
 * 查看文件出现搜索字符的行 cat -b filename | grep "xxx"
 * 从第3000行开始，显示1000行 cat filename | tail -n +3000 | head -n 1000
-* 显示1000行到3000行 cat filename| head -n 3000 | tail -n +1000
+* 显示1000行到3000行 cat filename| head -n 3000 | tail -n +1000'
+* 查看文件里有多少行: wc -l filename
+* 查看文件里有多少个word: wc -w filename
+* 查看文件里最长的那一行是多少个字: wc -L filename
 * $ find . -name 'my*'
 * 在某个目录下搜索出现搜索字符的文件 find .| xargs grep -ri "XXXX" -l
 find /etc -name "XXXX" -exec grep "XXXX" {} \; -print
