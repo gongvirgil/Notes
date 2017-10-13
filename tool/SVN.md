@@ -28,3 +28,8 @@ SVN还原
 #### TortosieSVN => Check for modifications
 
 #### TortosieSVN => Show log
+
+## SVN常用命令
+
+* svn checkout svn://xxx/xxx/ /home/xxx  --username `username`
+* svn cleanup
