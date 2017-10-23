@@ -7,11 +7,14 @@ sublime text预览markdown效果: Ctrl+Alt+O
 ##文字
 
 ```
-try something
-**我是粗文本哦**
+**我是粗体文本哦**
 ```
-try something
-**我是粗文本哦**
+**我是粗体文本哦**
+
+```
+*我是斜体文本哦*
+```
+*我是斜体文本哦*
 
 ----
 
@@ -48,10 +51,18 @@ try something
 ##无序列表
 ```
 * aaaa
+	* a1
+		* a2
+			* a3
+				* a4
 * bbbb
 * cccc
 ```
 * aaaa
+	* a1
+		* a2
+			* a3
+				* a4
 * bbbb
 * cccc
 
@@ -60,10 +71,12 @@ try something
 ##有序列表
 ```
 1. aaaa
+	1.1. a1
 2. bbbb
 3. cccc
 ```
 1. aaaa
+	1.1. a1
 2. bbbb
 3. cccc
 
