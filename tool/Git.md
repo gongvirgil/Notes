@@ -40,6 +40,14 @@ rake page name="页面名称.md"
 
 rake page name="pages/页面名称.md"
 
+$ git reset HEAD <file>
+
+$ git log
+
+$ git reset --hard <commit_id>
+
+
+
 
 ## 免密码提交
 
