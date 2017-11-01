@@ -3,6 +3,7 @@
 ## 安装pandoc
 
 * 参考官方网站：http://pandoc.org/installing.html
+	* linux下安装：sudo apt-get install pandoc
 
 ## 安装MiKTeX
 
