@@ -39,9 +39,9 @@
 
 [数据库]()
 
-* [MySQL](./database/MySQL.md)
+* [MySQL](./database/MySQL/index.md)
 * [MongoDB](./database/MongoDB.md)
-* [Redis](./database/Redis.md)
+* [Redis](./database/Redis/index.md)
 
 [浏览器]()
 
