@@ -19,18 +19,29 @@ function secsToStr($secs,$format="") {
  * @param  [type] $arr [description]
  * @return [type]	  [description]
  */
-function arrToObj($arr) {
-	if (!is_array($arr)) return $arr;
-	$obj = new stdClass();
-	if (is_array($arr) && count($arr) > 0) {
+function arrToObj($arr){
+	if(is_array($arr)){
+		$obj = new stdClass();
 		foreach ($arr as $k => $v) {
 			$k = strtolower(trim($k));
 			if (!empty($k)) $obj->$k = arrToObj($v);
 		}
 		return $obj;
-	} else {
-		return false;
 	}
+	return $arr;
+}
+/**
+ * [objToArr description]
+ * @param  [type] $obj [description]
+ * @return [type]      [description]
+ */
+function objToArr($obj){
+	if (is_object($obj)){
+		$arr = array();
+		foreach ($obj as $k => $v) $arr[$k] = objToArr($v);
+		return $arr;
+	}
+	return $obj;
 }
 /**
  * [array_depth description]

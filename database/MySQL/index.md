@@ -27,7 +27,7 @@
 * 删除数据
 	* DELETE FROM `tablename` WHERE `columnname`=1;
 * 添加字段
-	* ALTER TABLE `tablename` ADD `columnname` int(11) NOT NULL DEFAULT 0 after `columnname1`;
+	* ALTER TABLE `tablename` ADD `columnname` int(11) NOT NULL DEFAULT 0 COMMENT '' AFTER `columnname1`;
 * 修改字段
 	* 修改字段名称: ALTER TABLE `tablename` CHANGE `columnname1` `columnname2` CHAR(32) NOT NULL DEFAULT '';
 	* 修改字段属性: ALTER TABLE `tablename` MODIFY `columnname` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '';//修改时需带完整性约束条件
@@ -116,10 +116,11 @@ END //
 * 调用函数
 	* `functionname`();
 * 查看函数
+	* SELECT `name` FROM mysql.proc WHERE `db`='dbname' AND `type`='FUNCTION';
 	* SHOW FUCNTION STATUS LIKE '`functionname`';
 	* SHOW CREATE FUNCTION `functionname`;
 * 删除函数
-	* DROP FUNCTION IF EXISTS test;
+	* DROP FUNCTION IF EXISTS `functionname`;
 
 ```
 DROP FUNCTION if EXISTS test;
@@ -148,6 +149,7 @@ DELIMITER ;
 * 调用存储过程
 	* CALL `dbname`.`procedurename`();
 * 查看存储过程
+	* SELECT `name` FROM mysql.proc WHERE `db`='dbname' AND `type`='PROCEDURE';
 	* SHOW PROCEDURE STATUS;
 	* SHOW CREATE PROCEDURE `dbname`.`procedurename`;
 * 删除存储过程
@@ -211,6 +213,25 @@ END //
 DELIMITER ;
 ```
 
+## 预处理
+---
+
+* 定义:
+	* PREPARE `statement_name` FROM `sql`;
+* 执行:
+	* EXECUTE `statement_name` [USING variable [,variable...]];
+* 删除:
+	DEALLOCATE PREPARE `statement_name`;
+
+```
+PREPARE test FROM "INSERT INTO examlple VALUES(?,?)";
+SET @a='1'; 
+SET @b='2'; 
+EXECUTE test USING @a,@b; 
+SET @c='3';
+EXECUTE test USING @a,@c; 
+DEALLOCATE PREPARE test; 
+```
 
 ## 锁
 ---

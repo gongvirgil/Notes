@@ -2345,3 +2345,25 @@ window.onerror = killErrors;
 
 
 
+javascript原生的api本来就支持,Base64,但是由于之前的javascript局限性，导致Base64基本中看不中用。当前html5标准正式化之际，Base64将有较大的转型空间,对于Html5 Api中出现的如FileReader Api, 拖拽上传,甚至是Canvas,Video截图都可以实现。
+好了，前言说了一大堆，开发者需要重视：
+一.我们来看看，在javascript中如何使用Base64转码
+var str = 'javascript';
+
+window.btoa(str)
+//转码结果 "amF2YXNjcmlwdA=="
+
+window.atob("amF2YXNjcmlwdA==")
+//解码结果 "javascript"
+二.对于转码来说，Base64转码的对象只能是字符串，因此来说，对于其他数据还有这一定的局限性，在此特别需要注意的是对Unicode转码。
+var str = "China，中国"
+window.btoa(str)
+Uncaught DOMException: Failed to execute 'btoa' on 'Window': The string to be encoded contains characters outside of the Latin1 range.
+很明显，这种方式是不行的，那么如何让他支持汉字呢，这就要使用window.encodeURIComponent和window.decodeURIComponent
+var str = "China，中国";
+
+window.btoa(window.encodeURIComponent(str))
+//"Q2hpbmElRUYlQkMlOEMlRTQlQjglQUQlRTUlOUIlQkQ="
+
+window.decodeURIComponent(window.atob('Q2hpbmElRUYlQkMlOEMlRTQlQjglQUQlRTUlOUIlQkQ='))
+//"China，中国"
