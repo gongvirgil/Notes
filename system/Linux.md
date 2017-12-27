@@ -20,6 +20,11 @@
 * 重命名 mv a b
 查找目录：find /（查找范围） -name '查找关键字' -type d
 查找文件：find /（查找范围） -name 查找关键字 -print
+
+ls -1 | sort -u | head -10
+
+* 统计当前文件夹下文件的个数： ls -l |grep "^-"|wc -l
+* 统计当前文件夹下目录的个数： ls -l |grep "^d"|wc -l
 * 查找文件 find / -name 'httpd*'
 * 查看文件出现搜索字符的行 cat -b filename | grep "xxx"
 

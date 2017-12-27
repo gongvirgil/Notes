@@ -8,12 +8,7 @@
 
 
 
-
-
-
-
-
-
+[系统常量](http://document.thinkphp.cn/manual_3_2.html#const_reference)
 
 
 <?php

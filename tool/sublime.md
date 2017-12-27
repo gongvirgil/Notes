@@ -204,6 +204,7 @@ FileHeader能够自动的监测创建新文件动作，自动的添加模板。
 ### HTML-CSS-JS Prettify
 
 `ctrl + shift+ h` 格式化HTML/CSS/JS文档
+依赖本地node环境
 
 ### jQuery
 

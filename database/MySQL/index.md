@@ -22,6 +22,7 @@
 	* INSERT INTO `tablename`(id) VALUES(1);
 	* INSERT INTO `tablename` VALUES(2);
 	* INSERT INTO `tablename2`(`columnname`) SELECT `columnname` FROM `tablename1`
+	* INSERT INTO TABLE (a,b) VALUES (1,0),(2,0) ON DUPLICATE KEY UPDATE b=VALUES(b);
 * 修改数据
 	* UPDATE `tablename` SET `columnname1`=2 WHERE `columnname2`=1;
 * 删除数据
