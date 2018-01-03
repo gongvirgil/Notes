@@ -88,6 +88,7 @@
 * [HTTP header fields](./form/HTTP-header-fields.md)
 * [HTTP Content-Type](./form/HTTP-Content-Type.md)
 * [HTTP Status Code](./form/HTTP-Status-Code.md)
+* [ASCII码表](./form/ascii.md)
 * [RGB Colors](./form/RGB-Colors.md)
 * [Web Fonts](./form/Web-Fonts.md)
 * [CURL Status Code](./form/curl-code.md)
