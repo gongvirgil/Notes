@@ -2,7 +2,7 @@
 
 ## 常用命令
 
-* 启动 Nginx: /usr/local/nginx/sbin/nginx 、 ./sbin/nginx　
+* 启动 Nginx: ./sbin/nginx　
 * 停止 Nginx: ./sbin/nginx -s stop 、./sbin/nginx -s quit (-s都是采用向 Nginx 发送信号的方式。)
 * Nginx重新加载配置: ./sbin/nginx -s reload
 * 指定配置文件: ./sbin/nginx -c /usr/local/nginx/conf/nginx.conf (-c表示configuration，指定配置文件)
@@ -58,6 +58,11 @@ http {
         #charset koi8-r;
 
         #access_log  logs/host.access.log  main;
+
+        location /laravel55 {
+            root   /var/pbx/laravel55/public;
+            index  index.php index.html index.htm;
+        }
 
         location / {
             root   html;
