@@ -73,9 +73,14 @@ http://blog.csdn.net/ownfire/article/details/45847939
     docker load < /home/save.tar
 ```
 
-* 列出当前所有正在运行的container: docker ps
-* 列出所有的container: docker ps -a
-* 列出最近一次启动的container: docker ps -l
+* 创建容器: docker create 容器名或者容器ID
+* 启动容器: docker start [-i] 容器名
+* 运行容器: docker run -it --volumes-from 指定挂载数据的数据卷容器 -p 80:80 -v 宿主机目录绝对路径:镜像内挂载的路径 --name 指定容器名称 镜像名 /bin/bash
+    * 相当于docker create + docker start
+    * 数据卷：其实就是一个正常的容器，专门用来提供数据卷供其它容器挂载的
+* 查看正在运行的容器: docker ps
+* 查看所有容器: docker ps -a
+* 查看最近一次运行的容器: docker ps -l
 * 删除所有容器: docker rm `docker ps -a -q`
 * 删除单个容器: docker rm Name/ID
     * -f, --force=false
@@ -98,5 +103,14 @@ http://blog.csdn.net/ownfire/article/details/45847939
 * 附加到一个运行的容器上面: docker attach ID
     * --no-stdin=false Do not attach stdin
     * --sig-proxy=true Proxify all received signal to the process
-docker attach 容器名或者容器ID bash     # 进入容器的命令行（退出容器后容器会停止）
-docker exec -it 容器名或者容器ID bash   # 进入容器的命令行
+* 进入容器的命令行: docker attach 容器名或者容器ID bash
+    * 退出容器后容器会停止
+* 进入容器的命令行: docker exec -it 容器名或者容器ID bash
+* 查看WEB应用程序容器的进程: docker top 容器名
+* 查看Docker的底层信息: docker inspect 容器名
+    * 查看容器所挂载的目录: docker inspect container_name | grep Mounts -A 20
+
+docker exec -it <container_id> bash -c 'cat > /path/to/container/file' < /path/to/host/file/
+
+
+

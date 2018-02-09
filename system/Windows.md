@@ -1,5 +1,7 @@
 ##windows
 
+* 检测TCP端口能否在外面访问: telnet   www.baidu.com  80
+
 ###连接远程服务器
 
     mstsc
