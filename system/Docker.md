@@ -44,6 +44,11 @@ http://blog.csdn.net/ownfire/article/details/45847939
 * 可以看到docker_study在虚拟机内的路径，进入该路径，查看是否读取到我们主机的文件与文件夹
 * 从归档文件中创建镜像: cat docker.tar.gz | docker import - webcc:webcc-demo
 
+
+## 镜像加速
+
+* [镜像加速](https://yeasy.gitbooks.io/docker_practice/content/install/mirror.html)
+
 ## 常用命令
 
 * 查看docker版本: docker version
@@ -114,3 +119,103 @@ docker exec -it <container_id> bash -c 'cat > /path/to/container/file' < /path/t
 
 
 
+## Dockerfile
+
+Dockerfile文件中的关键字：
+
+### FROM
+
+语法：FROM <image>[:<tag>]
+解释：设置要制作的镜像基于哪个镜像，FROM指令必须是整个Dockerfile的第一个指令，如果指定的镜像不存在默认会自动从Docker Hub上下载。
+
+### MAINTAINER
+
+语法：MAINTAINER <name>
+解释：MAINTAINER指令允许你给将要制作的镜像设置作者信息。
+
+### ADD
+
+语法：ADD <src> <dest>
+解释：ADD指令用于从指定路径拷贝一个文件或目录到容器的指定路径中，<src>是一个文件或目录的路径，也可以是一个url，路径是相对于该Dockerfile文件所在位置的相对路径，<dest>是目标容器的一个绝对路径。
+
+### WORKDIR
+
+语法：WORKDIR /path/to/workdir
+解释：WORKDIR指令用于设置Dockerfile中的RUN、CMD和ENTRYPOINT指令执行命令的工作目录(默认为/目录)，该指令在Dockerfile文件中可以出现多次，如果使用相对路径则为相对于WORKDIR上一次的值，例如WORKDIR /data，WORKDIR logs，RUN pwd最终输出的当前目录是/data/logs。
+
+### RUN
+
+语法：① RUN <command>   #将会调用/bin/sh -c <command>
+      ② RUN ["executable", "param1", "param2"] #将会调用exec执行，以避免有些时候shell方式执行时的传递参数问题，而且有些基础镜像可能不包含/bin/sh
+解释：RUN指令会在一个新的容器中执行任何命令，然后把执行后的改变提交到当前镜像，提交后的镜像会被用于Dockerfile中定义的下一步操作，RUN中定义的命令会按顺序执行并提交，这正是Docker廉价的提交和可以基于镜像的任何一个历史点创建容器的好处，就像版本控制工具一样。
+
+### ENV
+
+语法：ENV <key> <value>
+解释：ENV指令用于设置环境变量，在Dockerfile中这些设置的环境变量也会影响到RUN指令，当运行生成的镜像时这些环境变量依然有效，如果需要在运行时更改这些环境变量可以在运行docker run时添加–env <key>=<value>参数来修改。
+注意：最好不要定义那些可能和系统预定义的环境变量冲突的名字，否则可能会产生意想不到的结果。
+
+### EXPOSE
+
+语法：EXPOSE <port> [ ...]
+解释：EXPOSE指令用来告诉Docker这个容器在运行时会监听哪些端口，Docker在连接不同的容器(使用–link参数)时使用这些信息。
+
+### CMD
+
+语法： ① CMD ["executable", "param1", "param2"]    #将会调用exec执行，首选方式
+      ② CMD ["param1", "param2"]        #当使用ENTRYPOINT指令时，为该指令传递默认参数
+      ③ CMD <command> [ <param1>|<param2> ]        #将会调用/bin/sh -c执行
+解释：CMD指令中指定的命令会在镜像运行时执行，在Dockerfile中只能存在一个，如果使用了多个CMD指令，则只有最后一个CMD指令有效。当出现ENTRYPOINT指令时，CMD中定义的内容会作为ENTRYPOINT指令的默认参数，也就是说可以使用CMD指令给ENTRYPOINT传递参数。
+注意：RUN和CMD都是执行命令，他们的差异在于RUN中定义的命令会在执行docker build命令创建镜像时执行，而CMD中定义的命令会在执行docker run命令运行镜像时执行，另外使用第一种语法也就是调用exec执行时，命令必须为绝对路径。
+
+### USER
+### ENTRYPOINT
+### VOLUME
+### ONBUILD
+
+## docker-compose
+
+### docker-compose.yml
+
+一份标准配置文件应该包含 version、services、networks 三大部分
+
+* [docker-compose.yml](https://www.jianshu.com/p/2217cfed29d7)
+
+```
+version: '2'
+services:
+  `服务名称-自定义`:
+    image: `指定服务的镜像名称或镜像 ID`
+    ports:
+      - 8080
+    networks:
+      - front-tier
+      - back-tier
+
+  redis:
+    image: redis
+    links:
+      - web
+    networks:
+      - back-tier
+
+  lb:
+    image: dockercloud/haproxy
+    ports:
+      - 80:80
+    links:
+      - web
+    networks:
+      - front-tier
+      - back-tier
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  front-tier:
+    driver: bridge
+  back-tier:
+driver: bridge
+```
+
+#### services
