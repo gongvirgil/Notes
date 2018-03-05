@@ -1,5 +1,7 @@
 # Laravel
 
+* [laravel docs](https://docs.golaravel.com/docs/5.6/installation/)
+
 ## Laravel 文件夹结构简介
 
 | 文件夹名称 | 简介 |
@@ -56,6 +58,10 @@
 | php artisan tinker                | 进入 tinker 环境
 | php artisan route:list            | 查看路由列表
 
+### Migration
+
+创建数据表 : php artisan make:migration create_users_table
+
 ## Homestead
 
 ## laradocker
@@ -65,3 +71,12 @@
 
 dokcer-compose up -d nginx
 dokcer-compose up -d mysql
+
+* 修改laravel中的.env文件
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=root
+DB_USERNAME=root
+DB_PASSWORD=secret
