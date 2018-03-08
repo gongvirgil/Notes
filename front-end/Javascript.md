@@ -1,3 +1,30 @@
+## 全局ajax捕捉错误
+
+    $(document).ajaxError(function(event, XMLHttpRequest, ajaxOptions, thrownError) {
+        if (XMLHttpRequest.status == "401") {
+            layer.confirm('长时间未操作，请重新登录', {
+                closeBtn: 0,
+                btn: ['确定']
+              }, function(index) {
+                layer.close(index);
+                window.location.reload();
+              });
+            return;
+        }
+        if (XMLHttpRequest.status == "403") {
+            layer.confirm('您无此页面权限，请进行刷新', {
+                closeBtn: 0,
+                btn: ['确定']
+              }, function(index) {
+                layer.close(index);
+                window.location.reload();
+              });
+            return;
+        }
+        //$( "div.log" ).text( "Triggered ajaxError handler." );
+        //window.alert("请求服务器发生错误，请重试，如果失败请联系管理员。");
+        //layer.msg('请求服务器发生错误，请重试，如果失败请联系管理员。');
+    });
 
 ##js一些写法
 
@@ -2318,3 +2345,25 @@ window.onerror = killErrors;
 
 
 
+javascript原生的api本来就支持,Base64,但是由于之前的javascript局限性，导致Base64基本中看不中用。当前html5标准正式化之际，Base64将有较大的转型空间,对于Html5 Api中出现的如FileReader Api, 拖拽上传,甚至是Canvas,Video截图都可以实现。
+好了，前言说了一大堆，开发者需要重视：
+一.我们来看看，在javascript中如何使用Base64转码
+var str = 'javascript';
+
+window.btoa(str)
+//转码结果 "amF2YXNjcmlwdA=="
+
+window.atob("amF2YXNjcmlwdA==")
+//解码结果 "javascript"
+二.对于转码来说，Base64转码的对象只能是字符串，因此来说，对于其他数据还有这一定的局限性，在此特别需要注意的是对Unicode转码。
+var str = "China，中国"
+window.btoa(str)
+Uncaught DOMException: Failed to execute 'btoa' on 'Window': The string to be encoded contains characters outside of the Latin1 range.
+很明显，这种方式是不行的，那么如何让他支持汉字呢，这就要使用window.encodeURIComponent和window.decodeURIComponent
+var str = "China，中国";
+
+window.btoa(window.encodeURIComponent(str))
+//"Q2hpbmElRUYlQkMlOEMlRTQlQjglQUQlRTUlOUIlQkQ="
+
+window.decodeURIComponent(window.atob('Q2hpbmElRUYlQkMlOEMlRTQlQjglQUQlRTUlOUIlQkQ='))
+//"China，中国"

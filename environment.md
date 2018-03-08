@@ -14,6 +14,68 @@
 
 	apt-cache show `package-name`
 
+
+> 查看CPU
+
+* 查看CPU个数: cat /proc/cpuinfo | grep "physical id" | uniq | wc -l
+* 查看CPU核数: cat /proc/cpuinfo | grep "cpu cores" | uniq 
+* 查看CPU型号: cat /proc/cpuinfo | grep 'model name' |uniq
+
+> 查看内存
+
+* 查看内存总数: cat /proc/meminfo | grep MemTotal
+* 查看内存条数: dmidecode |grep -A16 "Memory Device$"
+
+|	说明	|	Column	|	kB	|
+|---|---|---|
+|	|	MemTotal			|	503428kB
+|	|	MemFree				|	33200kB
+|	|	Buffers				|	40128kB
+|	|	Cached				|	103684kB
+|	|	SwapCached			|	62088kB
+|	|	Active				|	157924kB
+|	|	Inactive			|	229200kB
+|	|	Active(anon)		|	96524kB
+|	|	Inactive(anon)		|	153172kB
+|	|	Active(file)		|	61400kB
+|	|	Inactive(file)		|	76028kB
+|	|	Unevictable			|	0kB
+|	|	Mlocked				|	0kB
+|	|	SwapTotal			|	522236kB
+|	|	SwapFree			|	311692kB
+|	|	Dirty				|	52kB
+|	|	Writeback			|	0kB
+|	|	AnonPages			|	222176kB
+|	|	Mapped				|	23384kB
+|	|	Shmem				|	6376kB
+|	|	Slab				|	59544kB
+|	|	SReclaimable		|	45964kB
+|	|	SUnreclaim			|	13580kB
+|	|	KernelStack			|	1032kB
+|	|	PageTables			|	13416kB
+|	|	NFS_Unstable		|	0kB
+|	|	Bounce				|	0kB
+|	|	WritebackTmp		|	0kB
+|	|	CommitLimit			|	773948kB
+|	|	Committed_AS		|	856128kB
+|	|	VmallocTotal		|	34359738367kB
+|	|	VmallocUsed			|	4944kB
+|	|	VmallocChunk		|	34359731004kB
+|	|	HardwareCorrupted	|	0kB
+|	|	AnonHugePages		|	0kB
+|	|	HugePages_Total		|	0
+|	|	HugePages_Free		|	0
+|	|	HugePages_Rsvd		|	0
+|	|	HugePages_Surp		|	0
+|	|	Hugepagesize		|	2048kB
+|	|	DirectMap4k			|	32704kB
+|	|	DirectMap2M			|	491520kB
+
+
+> 查看硬盘
+
+* 查看硬盘大小: fdisk -l | grep Disk
+
 ## 安装工具
 
 ### vim
@@ -70,6 +132,9 @@
 
 ## 安装php扩展
 
+	//查看已安装的扩展
+	php -m
+	//常用扩展
 	apt install php-curl
 	apt install php-mbstring
 	apt-get install libapache2-mod-php7.0

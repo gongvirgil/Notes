@@ -34,6 +34,8 @@
 
 ## 安装
 
+* [](http://professor.blog.51cto.com/996189/1851370)
+
 ### 安装Redis
 
     //下载安装包
@@ -78,7 +80,7 @@ bin目录下的几个文件：
     /usr/bin/phpize             
     ./configure --with-php-config=/usr/bin/php-config
     make && make install
-    //修改php.ini
+    //修改php.ini或新建/etc/php5/apache2/conf.d/redis.ini
     vi /etc/php5/apache2/php.ini
     vi /etc/php5/cli/php.ini
     //加入

@@ -6,6 +6,11 @@
 * 重启apache:   /www/yile/apache/bin/apachectl restart
 * 重启httpd:		 service httpd restart
 * 复制文件夹下文件  cp -r /home/aaa/* /home/sss
+    * 目录合并且覆盖：cp -frap /new/* /old/
+    * -f  强制覆盖，不询问yes/no（-i的默认的，即默认为交互模式，询问是否覆盖）
+    * -r  递归复制，包含目录
+    * -a  做一个备份，这里可以不用这个参数，我们可以先备份整个test目录
+    * -p  保持新文件的属性不变
 * 软链接：ln -s /etc/pbx/enterprise/00000008 eid8
 * 查看根目录文件夹大小 sudo du -h --max-depth=1 -x /
 * 修改权限 chmod -R 777 /home/aaa/*
@@ -15,10 +20,28 @@
 * 重命名 mv a b
 查找目录：find /（查找范围） -name '查找关键字' -type d
 查找文件：find /（查找范围） -name 查找关键字 -print
+
+ls -1 | sort -u | head -10
+
+* 统计当前文件夹下文件的个数： ls -l |grep "^-"|wc -l
+* 统计当前文件夹下目录的个数： ls -l |grep "^d"|wc -l
 * 查找文件 find / -name 'httpd*'
 * 查看文件出现搜索字符的行 cat -b filename | grep "xxx"
-* 从第3000行开始，显示1000行 cat filename | tail -n +3000 | head -n 1000
-* 显示1000行到3000行 cat filename| head -n 3000 | tail -n +1000
+
+* 从第A行开始，显示1000行 cat filename | tail -n +A | head -n 1000
+
+
+cat -n 文件路径 | tail -n +5 | head -n 6   // 显示 5 ～ 10 行的内容， 包括5 和10
+
+tail -n +iLinNum   // 从ILinNum开始显示到结束的内容
+tail -n iLinNum     // 显示最后 iLinNum 行的内容
+head -n iLinNum // 显示开头 iLinNum 行的内容
+head -n +iLinNum // 同 head -n iLinNum
+
+
+* 查看文件里有多少行: wc -l filename
+* 查看文件里有多少个word: wc -w filename
+* 查看文件里最长的那一行是多少个字: wc -L filename
 * $ find . -name 'my*'
 * 在某个目录下搜索出现搜索字符的文件 find .| xargs grep -ri "XXXX" -l
 find /etc -name "XXXX" -exec grep "XXXX" {} \; -print
@@ -223,3 +246,59 @@ douwan365开启mysql多端口：
 /www/yile/mysql-5.1.69/bin/mysqld_safe --defaults-extra-file=/www/yile/etc/my3321.cnf --datadir=/www/yile/mysql-5.1.69/var3321 --user=mysql &
 /www/yile/mysql-5.1.69/bin/mysqld_safe --defaults-extra-file=/www/yile/etc/my3322.cnf --datadir=/www/yile/mysql-5.1.69/var3322 --user=mysql &
 
+## FTP命令
+
+### 连接ftp服务器
+
+格式：ftp [hostname| ip-address]
+a)在linux命令行下输入：
+
+ftp 192.168.1.1
+b)服务器询问你用户名和密码，分别输入用户名和相应密码，待认证通过即可。
+
+### 下载文件
+
+下载文件通常用get和mget这两条命令。
+a) get 
+格式：get [remote-file] [local-file]
+将文件从远端主机中传送至本地主机中。
+如要获取远程服务器上/usr/your/1.htm，则
+
+ftp> get /usr/your/1.htm 1.htm (回车)
+
+b) mget　　　　　　
+格式：mget [remote-files]
+从远端主机接收一批文件至本地主机。
+如要获取服务器上/usr/your/下的所有文件，则
+
+ftp> cd /usr/your/
+ftp> mget *.* (回车)
+
+此时每下载一个文件，都会有提示。如果要除掉提示，则在mget *.* 命令前先执行:prompt off
+
+注意：文件都下载到了linux主机的当前目录下。比如，在　/usr/my下运行的ftp命令，则文件都下载到了/usr/my下。
+
+### 上传文件
+
+a) put
+格式：put local-file [remote-file]
+将本地一个文件传送至远端主机中。
+如要把本地的1.htm传送到远端主机/usr/your,并改名为2.htm
+
+ftp> put 1.htm /usr/your/2.htm (回车)
+
+b) mput
+格式：mput local-files
+将本地主机中一批文件传送至远端主机。
+如要把本地当前目录下所有html文件上传到服务器/usr/your/ 下
+
+ftp> cd /usr/your （回车）
+ftp> mput *.htm　（回车）
+
+注意：上传文件都来自于主机的当前目录下。比如，在　/usr/my下运行的ftp命令，则只有在/usr/my下的文件linux才会上传到服务器/usr/your 下。
+
+### 断开连接
+
+bye：中断与服务器的连接。
+
+ftp> bye (回车)

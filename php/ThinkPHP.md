@@ -8,12 +8,7 @@
 
 
 
-
-
-
-
-
-
+[系统常量](http://document.thinkphp.cn/manual_3_2.html#const_reference)
 
 
 <?php
@@ -56,3 +51,42 @@ thinkphp cli 模式下 命令执行 `php index.php Index index`
 //利用子查询进行查询 
 $subQuery = $model->field('id,name')->table('tablename')->group('field')->where($where)->order('status')->buildSql();
 $model->table($subQuery.' a')->where()->order()->select() 
+?>
+
+
+## 事务
+
+```
+<?php
+	$tran_result = true;
+	$trans = M();
+	$trans->startTrans();   // 开启事务
+
+	try {   // 异常处理
+	    // 更新实施
+	    $busbidList = M("busbid")->where($map)->select();
+	    foreach($busbidList as $k => $v) {
+	        $map['id'] = $busbidList[$k]['id'];
+	        $result = M('busbid')->where($map)->data($data)->save();
+	        if ($result === false) {
+	            throw new Exception(“错误原因”);
+	        }
+	    }
+	} catch (Exception $ex) {
+	    $tran_result = false;
+	    // 记录日志
+	    Log::record("== xxx更新失败 ==", 'DEBUG'); 
+	    Log::record($ex->getMessage(), 'DEBUG');
+	}
+
+	if ($tran_result === false) {
+	    $trans->rollback();
+	    // 更新失败
+	    $array['status'] = 0;
+	} else {
+	    $trans->commit();
+	    // 更新成功
+	    $array['status'] = 1;
+	}
+?>
+```

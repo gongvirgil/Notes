@@ -19,18 +19,29 @@ function secsToStr($secs,$format="") {
  * @param  [type] $arr [description]
  * @return [type]	  [description]
  */
-function arrToObj($arr) {
-	if (!is_array($arr)) return $arr;
-	$obj = new stdClass();
-	if (is_array($arr) && count($arr) > 0) {
+function arrToObj($arr){
+	if(is_array($arr)){
+		$obj = new stdClass();
 		foreach ($arr as $k => $v) {
 			$k = strtolower(trim($k));
 			if (!empty($k)) $obj->$k = arrToObj($v);
 		}
 		return $obj;
-	} else {
-		return false;
 	}
+	return $arr;
+}
+/**
+ * [objToArr description]
+ * @param  [type] $obj [description]
+ * @return [type]      [description]
+ */
+function objToArr($obj){
+	if (is_object($obj)){
+		$arr = array();
+		foreach ($obj as $k => $v) $arr[$k] = objToArr($v);
+		return $arr;
+	}
+	return $obj;
 }
 /**
  * [array_depth description]
@@ -65,6 +76,64 @@ function array_2sort($arr,$column,$sort='asc'){
   else array_multisort($vol, SORT_ASC, $arr);
   return $arr;
 }
-
+/**
+ * [batchInsert description]
+ * @param  [type]  $table  [description]
+ * @param  [type]  $arrays [description]
+ * @param  integer $limit  [description]
+ * @return [type]          [description]
+ */
+function batchInsert($table,$arrays,$limit=500){
+	if(empty($arrays) || empty($table)) return false;
+	$columnStr = "";
+	$valueStr = "";
+	$curNum = 0;
+	//$model = new Model();
+	foreach ($arrays as $array){
+		if(""===$columnStr){
+			$valueStr .= "(";
+			foreach ($array as $c=>$v){
+				//$v = mysql_real_escape_string($v);
+				if(""===$columnStr){
+					$columnStr = $c;
+					$valueStr .= is_string($v)?sprintf("'%s'",$v):$v;
+				}else{
+					$columnStr .= ",".$c;
+					$valueStr .= ",".(is_string($v)?sprintf("'%s'",$v):$v);
+				}
+			}
+			$valueStr .= ")";
+		}else{
+			$valueStr .= ",(";
+			$i = 0;
+			foreach ($array as $v){
+				//$v = mysql_real_escape_string($v);
+				if($i == 0){
+					$valueStr .= is_string($v)?sprintf("'%s'",$v):$v;
+				}else{
+					$valueStr .= ",".(is_string($v)?sprintf("'%s'",$v):$v);
+				}
+				$i++;
+			}
+			$valueStr .= ")";
+		}
+		if($limit > 0){
+			$curNum++;
+			if($curNum > $limit){
+				$sql = sprintf("INSERT IGNORE INTO %s(%s) VALUES %s",$table,$columnStr,$valueStr);
+				//$model->execute($sql);
+				$columnStr = "";
+				$valueStr = "";
+				$curNum = 0;
+				echo(sprintf("%s\r\n",$sql));
+			}
+		}
+	}
+	if(""!==$columnStr){
+		$sql = sprintf("INSERT IGNORE INTO %s(%s) VALUES %s",$table,$columnStr,$valueStr);
+		//$model->execute($sql);
+		echo(sprintf("%s\r\n",$sql));
+	}
+}
 ?>
 ```
