@@ -26,6 +26,7 @@
 - - - -
 * [原生PHP](./php/PHP.md)
 * [ThinkPHP](./php/ThinkPHP.md)
+* [Laravel](./php/Laravel.md)
 - - - -
 * [php-redis](./php/php-redis.md)
 * [php-fpm](./php/php-fpm.md)

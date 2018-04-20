@@ -16,6 +16,11 @@
 * 修改权限 chmod -R 777 /home/aaa/*
 * 修改用户权限 chown -R root /home/aaa/*
 * 删除文件 rm -rf /home/aaa/*
+
+查找大文件: find /var/log -size +100M -exec ls -lh {} \;
+删除大于100M的文件 : find /var/log/ -size +100M -exec rm {} \;
+
+
 * 新建文件夹 mkdir 
 * 重命名 mv a b
 查找目录：find /（查找范围） -name '查找关键字' -type d

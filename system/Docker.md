@@ -49,6 +49,12 @@ http://blog.csdn.net/ownfire/article/details/45847939
 
 * [镜像加速](https://yeasy.gitbooks.io/docker_practice/content/install/mirror.html)
 
+* win7镜像加速
+  docker-machine ssh default
+  sudo sed -i "s|EXTRA_ARGS='|EXTRA_ARGS='--registry-mirror=https://registry.docker-cn.com |g" /var/lib/boot2docker/profile
+  exit
+  docker-machine restart default
+
 ## 常用命令
 
 * 查看docker版本: docker version
@@ -174,6 +180,16 @@ Dockerfile文件中的关键字：
 ### ONBUILD
 
 ## docker-compose
+
+### 安装docker-compose
+
+apt-get update
+apt-get install python-pip
+pip uninstall docker-compose( 如果有老版的，先删除掉)
+pip install docker-compose
+docker-compose --vesion
+
+
 
 ### docker-compose.yml
 
