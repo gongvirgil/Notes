@@ -172,6 +172,15 @@ ctrl+alt+backspace 删除空行
 
 使用：输入/*、/**然后回车，还有很多用法，请参照 https://sublime.wbond.net/packages/DocBlockr
 
+```
+{
+    "jsdocs_extra_tags":[
+        "${1:[description]}",
+    ],
+    "jsdocs_function_description": false
+}
+```
+
 ###Emmet
 
 Emmet绝对的节省时间。您可以轻松快速地编写HTML。
