@@ -183,10 +183,7 @@ git rm --cached logs/xx.log
 
 git commit -m "We really don't want Git to track this anymore!"
 
-
-
-
-###恢复删除的分支
+### 恢复删除的分支
 
 git log
 
@@ -198,7 +195,11 @@ git branch recover_branch[新分支] commit_id
 
 ### 大小写敏感
 
-	git config core.ignorecase false
+* git config core.ignorecase false
+
+### 忽略文件权限
+
+* git config core.filemode false
 
 ## Git各个状态之间转换指令总结
 
@@ -223,3 +224,26 @@ git branch recover_branch[新分支] commit_id
 * B -> C : git commit
 * C -> B : git reset --soft HEAD^
 * 修改最后一次提交:git commit --amend
+
+## 撤销
+
+> 版本回退
+
+* git reset --hard 版本号
+
+> 绿字变红字(撤销add)
+
+* 撤销所有的已经add的文件: git reset HEAD .
+* 撤销某个文件或文件夹：git reset HEAD -filename
+
+> 红字变无 (撤销没add修改)
+
+* git checkout -- filename
+
+
+composer create-project --prefer-dist laravel/laravel blog 5.6.24
+
+
+git fetch --all
+git reset --hard origin/master
+git pull

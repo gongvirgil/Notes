@@ -1,5 +1,40 @@
 # Linux操作命令
 
+1、查看CPU信息
+* 总核数 = 物理CPU个数 X 每颗物理CPU的核数 
+* 总逻辑CPU数 = 物理CPU个数 X 每颗物理CPU的核数 X 超线程数
+
+* 查看物理CPU个数
+cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l
+
+* 查看每个物理CPU中core的个数(即核数)
+cat /proc/cpuinfo| grep "cpu cores"| uniq
+
+* 查看逻辑CPU的个数
+cat /proc/cpuinfo| grep "processor"| wc -l
+
+* 查看CPU信息（型号）
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+
+* 查看CPU的负载
+
+平均负载是指上一分钟同时处于就绪状态的平均进程数。在CPU中可以理解为CPU可以并行处理的任务数量，就是CPU个数X核数。
+如果CPU Load等于CPU个数乘以核数，那么就说CPU正好满负载，再多一点，可能就要出问题了，有些任务不能被及时分配处理器，那要保证性能的话，最好要小于CPU个数X核数X0.7。
+Load Average是指CPU的Load。它所包含的信息是在一段时间内CPU正在处理及等待CPU处理的进程数之和的统计信息，也就是CPU使用队列的长度的统计信息。
+Load Average的值应该小于CPU个数X核数X0.7，Load Average会有3个状态平均值，分别是1分钟、5分钟和15分钟平均Load。
+如果1分钟平均出现大于CPU个数X核数的情况，还不需要担心；如果5分钟的平均也是这样，那就要警惕了；15分钟的平均也是这样，就要分析哪里出现问题，防范未然。
+
+* CPU负载信息，使用top 命令
+top
+
+2、查看内存信息
+1）、cat /proc/meminfo
+2）、free 命令
+
+3、查看磁盘信息
+1）fdisk -l
+2）iostat -x 10   查看磁盘IO的性能
+
 * 查看时间： date
 * 修改时间： date -s "20151008 19:33:00"（hwclock --systohc）
 * 同步服务器时间：ntpdate asia.pool.ntp.org
@@ -307,3 +342,40 @@ ftp> mput *.htm　（回车）
 bye：中断与服务器的连接。
 
 ftp> bye (回车)
+
+## samba
+
+二、安装
+$rpm -qa | grep samba        #查看系统是否已安装samba
+$yum -y install samba              #使用yum软件包管理工具安装samba
+三、常用命令
+1. service smb status        #查看smd服务的状态
+2. service smb start           #运行smb服务
+3. service smb stop           #停止服务
+4. service smb restart       #重启服务，但在实际中一般不采用
+5. service smb reload       #重载服务，在实际中较常用，不用停止服务
+6. chkconfig smb on         #开机自启动
+
+$useradd user1
+$smbpasswd -a user1    #这里可以改为pdbedit -a user1
+smbpasswd -e user1 //激活用户 
+
+vi /etc/samba/smb.conf
+
+编辑/etc/samba目录下的smb.conf文件。
+
+smb.conf中包含了多个全程单元，每个单元的名字放于方括号（[]）中，方括号也是区分各个单元的标识。第一个单元是[global]，用于一些全局设置，对于不熟悉samba的用户来说，一般不要对此单元进行修改。第二个单元是[home]，它的作用是使linux用户可以从其它机器上连接到自己的home目录。要设置一个特定的共享目录，建议在smb.conf文件尾部增加一个全程单元。一般包括几条语句。下面是一个例子:
+
+[Share]
+comment = Shared Folder with username and password
+path = /home/zwq
+valid users = zwq
+public = no
+writable = yes
+printable = no
+create mask = 0765
+
+可以登录samba服务器，但是没有权限访问linux下的共享目录
+1、确保linux下防火墙关闭或者是开放共享目录权限  iptalbes -F   service iptables stop
+2、确保samba服务器配置文件smb.conf设置没有问题，可网上查阅资料看配置办法
+3、确保setlinux关闭，可以用setenforce 0命令执行。 默认的，SELinux禁止网络上对Samba服务器上的共享目录进行写操作，即使你在smb.conf中允许了这项操作。

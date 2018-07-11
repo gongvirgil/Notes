@@ -60,6 +60,8 @@
 | php artisan tinker                | 进入 tinker 环境
 | php artisan route:list            | 查看路由列表
 
+* 查看laravel版本：php artisan --version
+
 ### Migration
 
 创建数据表 : php artisan make:migration create_users_table

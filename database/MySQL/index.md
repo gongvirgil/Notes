@@ -34,7 +34,7 @@
 	* 修改字段属性: ALTER TABLE `tablename` MODIFY `columnname` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '';//修改时需带完整性约束条件
 	* 修改字段自增长属性: ALTER TABLE `tablename` MODIFY `columnname` int(11) NOT NULL AUTO_INCREMENT;
 * 删除字段
-	* ALTER TABLE `tablename` DROP COLUMN `columnname`;   
+	* ALTER TABLE `tablename` DROP COLUMN `columnname`;
 * 修改自增长的值
 	* ALTER TABLE `tablename` AUTO_INCREMENT=1;
 
@@ -51,6 +51,11 @@ MySQL5.5以后默认使用InnoDB存储引擎
 * 修改存储引擎
 	* ALTER TABLE `tablename` ENGINE=MyISAM;
 	* ALTER TABLE `tablename` ENGINE=InnoDB;
+
+## 字符集
+
+* 查看字符集配置：show variables like 'character_set_%';
+* 修改字符集配置：set character_set_server=utf8;
 
 ## 键&索引
 ---
