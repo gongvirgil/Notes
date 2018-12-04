@@ -2,6 +2,10 @@
 
 sublime text预览markdown效果: Ctrl+Alt+O
 
+Markdown解析器
+* PHP：https://github.com/SegmentFault/HyperDown
+* JS ：https://github.com/SegmentFault/HyperDown.js
+
 ----
 
 ##文字

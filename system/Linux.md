@@ -379,3 +379,11 @@ create mask = 0765
 1、确保linux下防火墙关闭或者是开放共享目录权限  iptalbes -F   service iptables stop
 2、确保samba服务器配置文件smb.conf设置没有问题，可网上查阅资料看配置办法
 3、确保setlinux关闭，可以用setenforce 0命令执行。 默认的，SELinux禁止网络上对Samba服务器上的共享目录进行写操作，即使你在smb.conf中允许了这项操作。
+
+2.1 永久关闭
+修改selinux的配置文件，重启后生效。
+
+打开 selinux 配置文件
+[root@localhost ~]# vim /etc/selinux/config
+修改 selinux 配置文件
+将SELINUX=enforcing改为SELINUX=disabled，保存后退出

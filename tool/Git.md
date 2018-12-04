@@ -133,6 +133,12 @@ helper = store
 
     $ git push origin --delete tag <tagname>  
 
+
+git查看某个文件的提交历史
+git log --pretty=oneline 文件名
+接下来使用git show显示具体的某次的改动。
+git show <git提交版本号> <文件名>
+
 ##忽略目录或文件
 
  touch .gitignore 
@@ -199,7 +205,9 @@ git branch recover_branch[新分支] commit_id
 
 ### 忽略文件权限
 
-* git config core.filemode false
+* git config core.filemode false  // 当前版本库
+* git config --global core.fileMode false // 所有版本库
+* cat .git/config // 查看git的配置文件
 
 ## Git各个状态之间转换指令总结
 
@@ -240,6 +248,32 @@ git branch recover_branch[新分支] commit_id
 
 * git checkout -- filename
 
+> 移除未track的文件
+
+* git clean -df
+
+-d表示同时移除目录,-f表示force,因为在git的配置文件中, clean.requireForce=true,如果不加-f,clean将会拒绝执行.
+
+在编译git库拉下来的代码时，往往会产生一些中间文件，这些文件我们根本不需要，尤其是在成产环节做预编译，检查代码提交是否能编译通过这种case时，我们往往需要编译完成后不管正确与否，还原现场，以方便下次sync代码时不受上一次的编译影响。
+> 删除 untracked files
+git clean -f
+
+ 
+> 连 untracked 的目录也一起删掉
+git clean -fd
+
+ 
+> 连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）
+git clean -xfd
+
+ 
+> 在用上述 git clean 前，强烈建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删
+git clean -nxfd
+git clean -nf
+git clean -nfd
+
+
+
 
 composer create-project --prefer-dist laravel/laravel blog 5.6.24
 
@@ -247,3 +281,61 @@ composer create-project --prefer-dist laravel/laravel blog 5.6.24
 git fetch --all
 git reset --hard origin/master
 git pull
+
+## 版本问题
+
+在使用git pull、git push、git clone会报类似如下的错误： 
+error: The requested URL returned error: 401 Unauthorized while accessing https://git.oschina.net/zemo/demo.git/info/refs 
+fatal: HTTP request failed
+
+一般是由于git版本的问题。 
+使用如下指令查看版本：
+
+```bash
+git --version
+git version 1.7.1
+```
+
+可以通过安装更高的版本解决问题。
+
+Centos Git1.7.1升级到Git2.2.1
+
+安装需求：
+
+```bash
+yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
+yum install  gcc perl-ExtUtils-MakeMaker 
+wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
+tar zxvf libiconv-1.14.tar.gz 
+cd libiconv-1.14
+./configure --prefix=/usr/local/libiconv
+make && make install
+```
+
+卸载Centos自带的git1.7.1: 
+通过git –version查看系统带的版本，Cento6.5应该自带的是git版本是1.7.1
+
+```bash
+yum remove git
+```
+
+下载git2.2.1并将git添加到环境变量中
+
+```bash
+wget https://github.com/git/git/archive/v2.2.1.tar.gz
+tar zxvf v2.2.1.tar.gz
+cd git-2.2.1
+make configure
+./configure --prefix=/usr/local/git --with-iconv=/usr/local/libiconv
+make all doc
+make install install-doc install-html
+echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc
+source /etc/bashrc
+```
+
+查看版本号
+
+```bash
+git --version
+git version 2.2.1
+```

@@ -60,6 +60,7 @@
 * [Excel](./tool/Excel.md)
 * [Swagger](./tool/Swagger.md)
 * [pandoc](./tool/pandoc.md)
+* [UML类图](./tool/UML.md)
 - - - -
 * [开放接口](./tool/open-api.md)
 

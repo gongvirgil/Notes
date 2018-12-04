@@ -3,6 +3,7 @@
 * [laravel docs](https://docs.golaravel.com/docs/5.6/installation/)
 * [Laravel 项目开发规范](https://laravel-china.org/docs/laravel-specification/5.5)
 * [Laravel 速查表](https://cs.laravel-china.org)
+* [Laravel Illuminate](https://laravel.com/api/master/index.html)
 
 ## Laravel 文件夹结构简介
 

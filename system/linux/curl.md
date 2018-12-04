@@ -26,11 +26,6 @@ curl -X POST "http://www.rest.com/api/users"
 curl -X PUT "http://www.rest.com/api/users"
 curl -X DELETE "http://www.rest.com/api/users"
 
-
-
-
-
-
 cURL 是很方便的Rest客戶端，可以很方便的完成許多Rest API測試的需求，甚至，如果是需要先登入或認證的rest api，也可以進行測試，利用curl指令，可以送出HTTP GET, POST, PUT, DELETE, 也可以改變 HTTP header來滿足使用REST API需要的特定條件。
 
 curl的參數很多，這邊僅列出目前測試REST時常用到的:
