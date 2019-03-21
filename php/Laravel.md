@@ -60,6 +60,9 @@
 | php artisan db:seed               | 填充数据库
 | php artisan tinker                | 进入 tinker 环境
 | php artisan route:list            | 查看路由列表
+| php artisan config:cache          | 缓存配置
+| php artisan config:clear          | 清除缓存配置
+
 
 * 查看laravel版本：php artisan --version
 

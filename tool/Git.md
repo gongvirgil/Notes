@@ -1,18 +1,23 @@
-### git安装
+# git
+
+## git安装
 
 #### Windows下安装
 
 官网下载地址：[https://git-scm.com/downloads](https://git-scm.com/downloads)
 安装完毕，将bin目录路径与git-core目录路径添加到系统path变量，就可以在cmd下直接使用git了。
 
-### git常用命令
+#### sourcetree
+
+
+
+## git常用命令
 
 $ git init 使用当前目录作为Git仓库
 
 $ git init <新仓库名> 初始化后目录下会出现一个名为 .git 的目录，所有 Git 需要的数据和资源都存放在这个目录中
 
 $ git remote add origin git@github.com:xxx/xxx.git 连接远程仓库
-
 
 $ git clone <版本库的网址> <本地目录名>
 
@@ -107,31 +112,42 @@ helper = store
 
 重新打开git bash即可，无需再输入用户名和密码
 
+## branch
 
+* git branch : 列出本地已经存在的分支，并且在当前分支的前面用"*"标记
+* git branch -r : 查看远程版本库分支列表
+* git branch -a : 查看所有分支列表，包括本地和远程
+* git branch `<branchName>` : 创建名为`<branchName>`的分支，创建分支时需要是最新的环境，创建分支但依然停留在当前分支
+* git branch -d `<branchName>` : 删除`<branchName>`分支，如果在分支中有一些未merge的提交，那么会删除分支失败，此时可以使用-D强制删除 
+* git branch -D `<branchName>` : 强制删除`<branchName>`分支
+* git branch -vv : 可以查看本地分支对应的远程分支
+* git branch -m `<oldName>` `<newName>` : 给分支重命名
 
-###查看远程分支
+* git checkout `<branchName>` : 切换到`<branchName>`分支
+* git checkout -b `<branchName>` : 如果分支存在则只切换分支，若不存在则创建并切换到`<branchName>`分支，repo start是对git checkout -b这个命令的封装，将所有仓库的分支都切换到`<branchName>`分支
 
-    $ git branch -a
+* git merge `<branchName>` : 合并分支
 
-###创建分支
+* git push origin --delete `<branchName>` : 删除远程分支
 
-    $ git branch <branchName>
+* 推送本地分支`local`到远程分支`remote`并建立关联关系
+  * 远程已有`remote`分支并且已经关联本地分支`local`且本地已经切换到`local` : git push
+  * 远程已有`remote`分支但未关联本地分支`local`且本地已经切换到`local` : git push -u origin/`remote`
+  * 远程没有`remote`分支，本地已经切换到`local` : git push origin `local`:`remote`
 
-###切换分支
-
-    $ git checkout <branchName>
-
-###合并分支
-
-    $ git merge <branchName>
-
-###删除远程分支
-
-    $ git push origin --delete <branchName>
-
-###删除远程tag
+## tag
 
     $ git push origin --delete tag <tagname>  
+
+
+## 要更新本地仓库的远程地址请运行 
+
+*(ssh):*
+git remote set-url origin git@mail.emi-gitlab.com:webcc/docker-image.git
+
+或 http(s):
+
+git remote set-url origin http://mail.emi-gitlab.com/webcc/docker-image.git
 
 
 git查看某个文件的提交历史
@@ -282,6 +298,32 @@ git fetch --all
 git reset --hard origin/master
 git pull
 
+## 库源
+
+查看当前远程Git库源地址
+
+git remote -v
+git remote -version
+
+修改当前的源地址
+
+git remote set-url origin [GIT URL]
+
+//orgin为当前源地址名，[GIT URL]为欲修改源地址
+
+添加一个新的Git库源地址
+
+$git remote add [NAME] [GIT URL]
+
+//[NAME]为新的Git库源地址名，[GIT URL]为新的git库源地址
+
+删除一个Git库源地址
+
+$git remote remove [NAME]
+$git remote rm [NAME]
+
+//[NAME]为Git库源地址名
+
 ## 版本问题
 
 在使用git pull、git push、git clone会报类似如下的错误： 
@@ -339,3 +381,45 @@ source /etc/bashrc
 git --version
 git version 2.2.1
 ```
+
+centos下升级git版本的操作记录
+ 
+
+在使用git pull、git push、git clone的时候，或者在使用jenkins发版的时候，可能会报类似如下的错误： 
+error: The requested URL returned error: 401 Unauthorized while accessing https://git.oschina.net/zemo/demo.git/info/refs 
+fatal: HTTP request failed
+
+这个一般是由于服务器本身自带的git版本过低造成的：
+
+[root@uatjenkins01 ~]# git --version
+git version 1.7.1
+一般只需要将git版本升级到高版本即可。下面说下git升级的操作记录：
+
+0）安装依赖软件
+[root@uatjenkins01 ~]# yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
+[root@uatjenkins01 ~]# yum install  gcc perl-ExtUtils-MakeMaker
+ 
+1）卸载系统自带的底版本git（1.7.1）
+[root@uatjenkins01 ~]# git --version
+git version 1.7.1
+[root@uatjenkins01 ~]# yum remove git
+  
+2）编译安装最新的git版本
+[root@uatjenkins01 ~]# cd /usr/local/src/
+[root@uatjenkins01 src]# wget https://www.kernel.org/pub/software/scm/git/git-2.15.1.tar.xz
+[root@uatjenkins01 src]# tar -vxf git-2.15.1.tar.xz
+[root@uatjenkins01 src]# cd git-2.15.1
+[root@uatjenkins01 git-2.15.1]# make prefix=/usr/local/git all
+[root@uatjenkins01 git-2.15.1]# make prefix=/usr/local/git install
+[root@uatjenkins01 git-2.15.1]# echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile
+[root@uatjenkins01 git-2.15.1]# source /etc/profile
+  
+[root@uatjenkins01 ~]# git --version
+git version 2.15.1
+  
+======================================================================
+如果是非root用户使用git，则需要配置下该用户下的环境变量
+[app@uatjenkins01 ~]$ echo "export PATH=$PATH:/usr/local/git/bin" >> ~/.bashrc
+[app@uatjenkins01 ~]$ source ~/.bashrc
+[app@uatjenkins01 ~]$ git --version
+git version 2.15.1
