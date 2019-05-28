@@ -33,7 +33,7 @@ $ git add -u    自动追踪文件，包括你已经手动删除的，状态为D
 
 $ git rm .../... -r -f
 
-$ git checkout . 
+$ git checkout .
 
 $ git commit -m "..."
 
@@ -53,7 +53,11 @@ $ git log
 
 $ git reset --hard <commit_id>
 
+$ git cherry-pick <commit_id>   // 把某个commit id的提交合并到当前分支.
 
+## 合并多次提交
+
+git rebase 命令：将多次commit合并，只保留一次提交历史记录。
 
 ## 免密码提交
 
@@ -118,7 +122,7 @@ helper = store
 * git branch -r : 查看远程版本库分支列表
 * git branch -a : 查看所有分支列表，包括本地和远程
 * git branch `<branchName>` : 创建名为`<branchName>`的分支，创建分支时需要是最新的环境，创建分支但依然停留在当前分支
-* git branch -d `<branchName>` : 删除`<branchName>`分支，如果在分支中有一些未merge的提交，那么会删除分支失败，此时可以使用-D强制删除 
+* git branch -d `<branchName>` : 删除`<branchName>`分支，如果在分支中有一些未merge的提交，那么会删除分支失败，此时可以使用-D强制删除
 * git branch -D `<branchName>` : 强制删除`<branchName>`分支
 * git branch -vv : 可以查看本地分支对应的远程分支
 * git branch -m `<oldName>` `<newName>` : 给分支重命名
@@ -137,10 +141,10 @@ helper = store
 
 ## tag
 
-    $ git push origin --delete tag <tagname>  
+    $ git push origin --delete tag <tagname>
 
 
-## 要更新本地仓库的远程地址请运行 
+## 要更新本地仓库的远程地址请运行
 
 *(ssh):*
 git remote set-url origin git@mail.emi-gitlab.com:webcc/docker-image.git
@@ -157,7 +161,7 @@ git show <git提交版本号> <文件名>
 
 ##忽略目录或文件
 
- touch .gitignore 
+ touch .gitignore
 
  在文件夹就生成了一个`.gitignore`的配置文件
 
@@ -201,7 +205,7 @@ git show <git提交版本号> <文件名>
 
 git rm --cached logs/xx.log
 
-然后更新 .gitignore 忽略掉目标文件，最后 
+然后更新 .gitignore 忽略掉目标文件，最后
 
 git commit -m "We really don't want Git to track this anymore!"
 
@@ -326,11 +330,11 @@ $git remote rm [NAME]
 
 ## 版本问题
 
-在使用git pull、git push、git clone会报类似如下的错误： 
-error: The requested URL returned error: 401 Unauthorized while accessing https://git.oschina.net/zemo/demo.git/info/refs 
+在使用git pull、git push、git clone会报类似如下的错误：
+error: The requested URL returned error: 401 Unauthorized while accessing https://git.oschina.net/zemo/demo.git/info/refs
 fatal: HTTP request failed
 
-一般是由于git版本的问题。 
+一般是由于git版本的问题。
 使用如下指令查看版本：
 
 ```bash
@@ -346,15 +350,15 @@ Centos Git1.7.1升级到Git2.2.1
 
 ```bash
 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
-yum install  gcc perl-ExtUtils-MakeMaker 
+yum install  gcc perl-ExtUtils-MakeMaker
 wget http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
-tar zxvf libiconv-1.14.tar.gz 
+tar zxvf libiconv-1.14.tar.gz
 cd libiconv-1.14
 ./configure --prefix=/usr/local/libiconv
 make && make install
 ```
 
-卸载Centos自带的git1.7.1: 
+卸载Centos自带的git1.7.1:
 通过git –version查看系统带的版本，Cento6.5应该自带的是git版本是1.7.1
 
 ```bash
@@ -383,10 +387,10 @@ git version 2.2.1
 ```
 
 centos下升级git版本的操作记录
- 
 
-在使用git pull、git push、git clone的时候，或者在使用jenkins发版的时候，可能会报类似如下的错误： 
-error: The requested URL returned error: 401 Unauthorized while accessing https://git.oschina.net/zemo/demo.git/info/refs 
+
+在使用git pull、git push、git clone的时候，或者在使用jenkins发版的时候，可能会报类似如下的错误：
+error: The requested URL returned error: 401 Unauthorized while accessing https://git.oschina.net/zemo/demo.git/info/refs
 fatal: HTTP request failed
 
 这个一般是由于服务器本身自带的git版本过低造成的：
@@ -398,12 +402,12 @@ git version 1.7.1
 0）安装依赖软件
 [root@uatjenkins01 ~]# yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel asciidoc
 [root@uatjenkins01 ~]# yum install  gcc perl-ExtUtils-MakeMaker
- 
+
 1）卸载系统自带的底版本git（1.7.1）
 [root@uatjenkins01 ~]# git --version
 git version 1.7.1
 [root@uatjenkins01 ~]# yum remove git
-  
+
 2）编译安装最新的git版本
 [root@uatjenkins01 ~]# cd /usr/local/src/
 [root@uatjenkins01 src]# wget https://www.kernel.org/pub/software/scm/git/git-2.15.1.tar.xz
@@ -413,10 +417,10 @@ git version 1.7.1
 [root@uatjenkins01 git-2.15.1]# make prefix=/usr/local/git install
 [root@uatjenkins01 git-2.15.1]# echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/profile
 [root@uatjenkins01 git-2.15.1]# source /etc/profile
-  
+
 [root@uatjenkins01 ~]# git --version
 git version 2.15.1
-  
+
 ======================================================================
 如果是非root用户使用git，则需要配置下该用户下的环境变量
 [app@uatjenkins01 ~]$ echo "export PATH=$PATH:/usr/local/git/bin" >> ~/.bashrc

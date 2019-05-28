@@ -9,6 +9,9 @@
 * Code alignment 对齐 ctrl+= ctrl+=x
 * Markdown PDF
 * vscode-pdf
+* setting sync
+  * setting sync token : 8dd61cc5a794235b435c10e4a4440cc72eedd5dd
+
 
 HTML Snippets：增强了zen-coding，增加了H5的自动补全，安装后每次打开自动启用(可能与其他插件冲突)。
 Angular 1.x Snippets：增加了AngularJs 1在.html和.js中的代码补全，安装后每次打开自动启用。
