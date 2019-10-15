@@ -10,7 +10,7 @@
 * Markdown PDF
 * vscode-pdf
 * setting sync
-  * setting sync token : 8dd61cc5a794235b435c10e4a4440cc72eedd5dd
+  * setting sync token : 3aede12d2cffb1add4f560898f0fe915
 
 
 HTML Snippets：增强了zen-coding，增加了H5的自动补全，安装后每次打开自动启用(可能与其他插件冲突)。
