@@ -6,4 +6,4 @@
 
 ###修改host
 
-	sudo vi/etc/hosts
+	sudo vi /etc/hosts
