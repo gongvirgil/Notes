@@ -27,6 +27,8 @@ background：VSCode美化插件，修改界面背景，详情见插件说明。
 
 ### 编辑器与窗口管理
 
+自动换行：首选项 -> 设置 -> editor.wordWrap
+
 同时打开多个窗口（查看多个项目）
 
 * 打开一个新窗口： Ctrl+Shift+N
@@ -52,8 +54,9 @@ background：VSCode美化插件，修改界面背景，详情见插件说明。
 * 修剪空格Ctrl+Shift+X
 * 上下移动一行： Alt+Up 或 Alt+Down
 * 向上向下复制一行： Shift+Alt+Up或Shift+Alt+Down
-* 在当前行下边插入一行Ctrl+Enter
-* 在当前行上方插入一行Ctrl+Shift+Enter
+* 在当前行下边插入一行：Ctrl+Enter
+* 在当前行上方插入一行：Ctrl+Shift+Enter
+* 同竖列插入多行光标：Alt+Shift   
 
 光标相关
 
