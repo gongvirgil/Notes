@@ -387,3 +387,15 @@ create mask = 0765
 [root@localhost ~]# vim /etc/selinux/config
 修改 selinux 配置文件
 将SELINUX=enforcing改为SELINUX=disabled，保存后退出
+
+防火墙（firewalld）
+临时关闭防火墙
+systemctl stop firewalld
+永久防火墙开机自关闭
+systemctl disable firewalld
+临时打开防火墙
+systemctl start firewalld
+防火墙开机启动
+systemctl enable firewalld
+查看防火墙状态
+systemctl status firewalld

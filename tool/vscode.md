@@ -27,6 +27,8 @@ background：VSCode美化插件，修改界面背景，详情见插件说明。
 
 ### 编辑器与窗口管理
 
+自动换行：首选项 -> 设置 -> editor.wordWrap
+
 同时打开多个窗口（查看多个项目）
 
 * 打开一个新窗口： Ctrl+Shift+N
