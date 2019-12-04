@@ -387,3 +387,8 @@ create mask = 0765
 [root@localhost ~]# vim /etc/selinux/config
 修改 selinux 配置文件
 将SELINUX=enforcing改为SELINUX=disabled，保存后退出
+
+测试连通性：
+smbclient-L localhost -U alice%P@ssw0rd
+
+smbd -F -S
