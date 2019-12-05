@@ -124,7 +124,7 @@ Redis是一个内存中的数据存储系统，可用作数据库、缓存或消
 
 ### 启动Redis
 
-    redis-server –port 6379  
+    redis-server --port 6379
 
 配置自动启动脚本、配置文件等：  
 

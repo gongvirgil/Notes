@@ -388,6 +388,10 @@ create mask = 0765
 修改 selinux 配置文件
 将SELINUX=enforcing改为SELINUX=disabled，保存后退出
 
+测试连通性：
+smbclient-L localhost -U alice%P@ssw0rd
+
+smbd -F -S
 防火墙（firewalld）
 临时关闭防火墙
 systemctl stop firewalld
