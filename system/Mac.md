@@ -2,8 +2,26 @@
 
 ## 常用快捷键
 
-新建文件夹：Shift+Command+N
-窗口最大化和取消最大化：Command + control + F
+* 新建文件夹：Shift+Command+N
+* 窗口最大化和取消最大化：Command + control + F
+* Finder显示全部隐藏文件: command + shift + .
+
+## 环境变量
+
+* a. /etc/profile 
+* b. /etc/paths 
+* c. ~/.bash_profile 
+* d. ~/.bash_login 
+* e. ~/.profile 
+* f. ~/.bashrc 
+
+其中a和b是系统级别的，系统启动就会加载，其余是用户接别的。
+c,d,e按照从前往后的顺序读取，如果c文件存在，则后面的几个文件就会被忽略不读了，以此类推。~/.bashrc没有上述规则，它是bash shell打开的时候载入的。这里建议在c中添加环境变量
+
+作者：二妹是只猫
+链接：https://www.jianshu.com/p/463244ec27e3
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 ## terminal常用命令
 

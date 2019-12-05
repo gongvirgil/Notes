@@ -4,7 +4,7 @@ Linux->MySQL:
 ps -el | grep mysqld
 ps -ef | grep mysql
 which mysql
-mysql -uroot -p
+mysql -h host -P port -u user -p pwd
 
 ## 查看mysql版本：
 

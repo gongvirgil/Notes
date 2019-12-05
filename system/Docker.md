@@ -60,6 +60,9 @@ http://blog.csdn.net/ownfire/article/details/45847939
 * 查看docker版本: docker version
 * 显示docker系统的信息: docker info
 
+* 查看网络列表: docker network ls
+* 查看容器对应网络的配置: docker network inspect <container id>
+
 * 检索image: docker search image_name
 
 * 下载image: docker pull image_name
@@ -208,7 +211,17 @@ pip uninstall docker-compose( 如果有老版的，先删除掉)
 pip install docker-compose
 docker-compose --vesion
 
+### 基本命令
 
+* docker-compose build
+* docker-compose kill
+* docker-compose logs
+* docker-compose pause
+* docker-compose ps
+* docker-compose restart
+* docker-compose rm
+* docker-compose run
+* docker-compose scale
 
 ### docker-compose.yml
 

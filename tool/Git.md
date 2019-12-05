@@ -9,7 +9,128 @@
 
 #### sourcetree
 
+## 配置全局用户名和邮箱：
 
+```sh
+git config --global user.name "xxx"  # 配置全局用户名，如Github上注册的用户名
+git config --global user.email "yyy@mail.com"  #配置全局邮箱，如Github上配置的邮箱
+```
+
+--global选项代表全局，是配置的全局user.name和user.email。不同的Git仓库默认的用户名和邮箱都是这个值。由于需要管理多个账户，所以仅使用这个全局值是不够的，需要在每个仓库中单独配置。
+
+如果已配置过，先重置
+
+```sh
+git config --global --unset user.name
+git config --global --unset user.email
+
+```
+查看账户配置
+
+```sh
+git config --global user.name
+git config --global user.email
+```
+
+## 配置多个Git账户
+
+### 对每个账户生成一对密钥
+
+首先进入保存秘钥的目录，该目录下保存秘钥，需要提醒的是这个目录是默认隐藏的，可以打开Finder，按下command + shift + .即可显示全部隐藏文件
+
+```sh
+cd ~/.ssh //查看秘钥目录
+```
+
+然后，根据账户邮箱生成秘钥。命令为：
+
+```sh
+ssh-keygen -t rsa -C "xxxx@qq.com"
+```
+
+生成秘钥后，会提示：
+
+```sh
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/liugui/.ssh/id_rsa):
+```
+
+可以使用
+
+```sh
+cat ~/.ssh/id_rsa.pub  #查看公钥，  id_rsa  没有pub 后缀的是秘钥，也叫私钥
+```
+
+注意：
+1. (/Users/liugui/.ssh/id_rsa): 冒号后面是让输入秘钥名的；
+2. 秘钥默认的文件名是id_rsa。为方便区分，可以自定义名字为id_rsa_Balopy。
+3. 接下来的提示都直接进行回车，直到秘钥生成。
+4. 通过ls命令，可以看到刚刚生成的密钥id_rsa_Balopy和 公钥id_rsa_Balopy.pub。
+同理，对其他账户，使用同样的方法。
+
+### 私钥添加到本地
+
+SSH协议的原理，就是在托管网站上使用公钥，在本地使用私钥，这样本地仓库就可以和远程仓库进行通信。在上一步已经生成了秘钥文件，接下来需要使用秘钥文件，首先是在本地使用秘钥文件：
+
+```sh
+ssh-add ~/.ssh/id_rsa_github // 将GitHub私钥添加到本地
+ssh-add ~/.ssh/id_rsa_gitlab // 将GitLab私钥添加到本地
+```
+
+为了检验本地是否添加成功，可以使用`ssh-add -l`命令进行查看
+
+### 对本地秘钥进行配置
+
+由于添加了多个密钥文件，所以需要对这多个密钥进行管理。在.ssh目录下新建一个config文件：
+
+touch config
+文件中的内容如下：
+
+```sh
+#网站的别名，随意取
+Host Balopy
+# 托管网站的域名
+HostName gitee.com 
+#指定优先使用哪种方式验证，支持密码和秘钥验证方式
+PreferredAuthentications publickey 
+# 托管网站上的用户名，最好写账户邮箱，否则容易设置失败
+User lueng@163.com
+# 使用的密钥文件
+IdentityFile ~/.ssh/id_rsa_Balopy_gitee
+
+# GitLab的配置相同
+Host wang
+HostName gitee.com
+PreferredAuthentications publickey
+User wang@268xue.com
+IdentityFile ~/.ssh/id_rsa
+```
+
+如果报以下错误，需要检查一下，用户名是否是邮箱，或域名是否按要求设置
+配置错误的情况
+
+注意：
+Host 是别名，替代的是 gitee.com， 在push/pull代码是，
+切记格式:
+git@gitee.com:balopy/Demo_Swift_2.0.git  // 原仓库地址
+git@Balopy:Balopy/Demo_Swift_2.0.git     // 使用时用别名
+git clone Balopy:balopy/Demo_Swift_2.0.git //如clone 时用别名
+
+### 公钥添加到托管网站
+
+以GitHub为例，先在本地复制公钥。进入.ssh目录，使用`vim id_rsa_github.pub`查看生成的GitHub公钥，全选进行复制。
+
+登录GitHub，点击右上角头像选择设置，在打开的页面中选择SSH公钥
+
+添加公钥
+托管网站的公钥添加完成。每个托管平台分别生成一对密钥，分别添加到本地和托管网站。
+
+这时候，可以测试一下配置是否成功，测试命令使用别名。例如，对于GitHub，本来应该使用的测试命令是：
+
+```sh
+ssh -T gitee.com // 单账号使用原域名，
+ssh -T Balopy   // 多账号测试时使用别名
+```
 
 ## git常用命令
 
