@@ -251,7 +251,7 @@ helper = store
 * git checkout `<branchName>` : 切换到`<branchName>`分支
 * git checkout -b `<branchName>` : 如果分支存在则只切换分支，若不存在则创建并切换到`<branchName>`分支，repo start是对git checkout -b这个命令的封装，将所有仓库的分支都切换到`<branchName>`分支
 
-* git merge `<branchName>` : 合并分支
+* git merge `<branchName>` : 合并该分支到当前所在分支
 
 * git push origin --delete `<branchName>` : 删除远程分支
 

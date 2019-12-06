@@ -6,6 +6,16 @@
 * 窗口最大化和取消最大化：Command + control + F
 * Finder显示全部隐藏文件: command + shift + .
 
+使用快捷键 Command+M，可以实现快速最小化当前窗口的目的。
+
+使用快捷键 Command+Option+M，可以实现快速最小化当前应用程序所有窗口的目的。比如你想一下子最小化多个 Finder 窗口，就可以用该快捷键。
+
+使用快捷键 Command+H，可以实现快速隐藏当前应用程序所有窗口的目的。
+
+使用快捷键 Command+Option+H，可以实现快速隐藏除当前应用程序之外所有程序窗口的目的。
+
+使用快捷键 Command+Option+M+H，可以实现快速隐藏所有应用程序窗口的目的。
+
 ## 环境变量
 
 * a. /etc/profile 
