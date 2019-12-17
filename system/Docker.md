@@ -320,6 +320,9 @@ docker-compose --vesion
 * docker-compose run
 * docker-compose scale
 
+修改dockerfile后，更新镜像：
+docker-compose up -d --build xxx
+
 ### 1.7.2. docker-compose.yml
 
 一份标准配置文件应该包含 version、services、networks 三大部分

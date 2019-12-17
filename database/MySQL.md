@@ -29,8 +29,8 @@ mysql -h host -P port -u user -p pwd
 
 	取消授权：REVOKE ALL PRIVILEGES ON *.* FROM 'root'@'123.126.23.70';
 
-	删除添加的用户  
-	DELETE FROM mysql.user WHERE user='root' AND Host='123.126.23.70';
+	添加用户：create user 'editest'@'%' identified by 'editest123456';
+	删除用户：DELETE FROM mysql.user WHERE user='root' AND Host='123.126.23.70';
 
 ## 修改账户密码
 

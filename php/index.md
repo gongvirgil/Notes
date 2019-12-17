@@ -18,6 +18,17 @@
 
 * [基础教程](http://www.runoob.com/php/php-tutorial.html)
 
+### 异常Exception
+
+```php
+try {
+
+} catch(Exception $e) {
+  $e->getTrace();
+  $e->getTraceAsString();
+}
+```
+
 ## 设计模式
 
 [五种常见设计模式](https://www.ibm.com/developerworks/cn/opensource/os-php-designptrns/)

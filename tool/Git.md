@@ -243,8 +243,8 @@ helper = store
 * git branch -r : 查看远程版本库分支列表
 * git branch -a : 查看所有分支列表，包括本地和远程
 * git branch `<branchName>` : 创建名为`<branchName>`的分支，创建分支时需要是最新的环境，创建分支但依然停留在当前分支
-* git branch -d `<branchName>` : 删除`<branchName>`分支，如果在分支中有一些未merge的提交，那么会删除分支失败，此时可以使用-D强制删除
-* git branch -D `<branchName>` : 强制删除`<branchName>`分支
+* git branch -d `<branchName>` : 删除本地`<branchName>`分支，如果在分支中有一些未merge的提交，那么会删除分支失败，此时可以使用-D强制删除
+* git branch -D `<branchName>` : 强制删除本地`<branchName>`分支
 * git branch -vv : 可以查看本地分支对应的远程分支
 * git branch -m `<oldName>` `<newName>` : 给分支重命名
 
@@ -264,6 +264,22 @@ helper = store
 
     $ git push origin --delete tag <tagname>
 
+## stash
+
+* `git stash save "save message"` ：执行存储时，添加备注，方便查找，只有git stash 也要可以的，但查找时不方便识别。
+* `git stash list` ：查看stash了哪些存储
+* `git stash show` ：显示做了哪些改动，默认show第一个存储,如果要显示其他存贮，后面加stash@{$num}，比如第二个 git stash show stash@{1}
+* `git stash show -p` ：显示第一个存储的改动，如果想显示其他存存储，命令：git stash show  stash@{$num}  -p ，比如第二个：git stash show  stash@{1}  -p
+* `git stash apply` ：应用某个存储,但不会把存储从存储列表中删除，默认使用第一个存储,即stash@{0}，如果要使用其他个，git stash apply stash@{$num} ， 比如第二个：git stash apply stash@{1} 
+* `git stash pop` ：命令恢复之前缓存的工作目录，将缓存堆栈中的对应stash删除，并将对应修改应用到当前的工作目录下,默认为第一个stash,即stash@{0}，如果要应用并删除其他stash，命令：git stash pop stash@{$num} ，比如应用并删除第二个：git stash pop stash@{1}
+* `git stash drop stash@{$num}` ：丢弃stash@{$num}存储，从列表中删除这个存储
+* `git stash clear` ：删除所有缓存的stash
+
+> 暂存部分文件
+
+* add 那些你不想备份的文件（例如： git add file1.js, file2.js）
+* `git stash –keep-index` 只会备份那些没有被add的文件。
+* `git reset` 取消已经add的文件的备份。
 
 ## 要更新本地仓库的远程地址请运行
 
@@ -285,6 +301,12 @@ git show <git提交版本号> <文件名>
  touch .gitignore
 
  在文件夹就生成了一个`.gitignore`的配置文件
+
+git rm -r --cached .
+git config core.autocrlf false
+git add .
+git commit -m 'update .gitignore'
+git config core.autocrlf true
 
 ###开放模式
 
