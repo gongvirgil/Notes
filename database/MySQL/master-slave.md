@@ -1,5 +1,48 @@
 # 主从MySQL
 
+> 设置主从同步
+
+在master中执行
+mysql> show master status;
++---------------------------+----------+--------------+------------------+-------------------+
+| File                      | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++---------------------------+----------+--------------+------------------+-------------------+
+| replicas-mysql-bin.000004 |      154 |              | mysql            |                   |
++---------------------------+----------+--------------+------------------+-------------------+
+1 row in set (0.00 sec)
+
+在slave中执行：
+
+change master to master_host='172.16.35.200', master_user='root', master_password='xxx', master_port=13306, master_log_file='replicas-mysql-bin.000004', master_log_pos= 154, master_connect_retry=30;
+
+* master_host ：Master的地址
+* master_port：Master的端口号，指的是容器的端口号
+* master_user：用于数据同步的用户
+* master_password：用于同步的用户的密码
+* master_log_file：指定 Slave 从哪个日志文件开始复制数据，即上文中提到的 File 字段的值
+* master_log_pos：从哪个 Position 开始读，即上文中提到的 Position 字段的值
+* master_connect_retry：如果连接失败，重试的时间间隔，单位是秒，默认是60秒
+
+show slave status \G;
+
+正常情况下，SlaveIORunning 和 SlaveSQLRunning 都是No，因为我们还没有开启主从复制过程。使用start slave开启主从复制过程，然后再次查询主从同步状态show slave status \G;。
+
+> 设置主从同步延迟
+
+Mysql （需5.6以上版本）延迟复制配置，通过设置Slave上的MASTER TO MASTER_DELAY参数实现：
+CHANGE MASTER TO MASTER_DELAY = N；
+N为多少秒，该语句设置从数据库延时N秒后，再与主数据库进行数据同步复制
+
+具体操作：
+登陆到Slave数据库服务器
+mysql>stop slave;
+mysql>CHANGE MASTER TO MASTER_DELAY = 5;
+mysql>start slave;
+mysql>show slave status \G;
+
+
+
+
 ## 配置Master主服务器
 
 1、在Master MySQL上创建一个用户‘repl’，并允许其他Slave服务器可以通过远程访问Master，通过该用户读取二进制日志，实现数据同步。
@@ -67,7 +110,7 @@ start slave;
 change master to master_host='192.168.0.104', //Master 服务器Ip
 master_port=3306,
 master_user='repl',
-master_password='mysql', 
+master_password='mysql',
 master_log_file='master-bin.000001',//Master服务器产生的日志
 master_log_pos=0;
 

@@ -58,7 +58,12 @@ MySQL5.5以后默认使用InnoDB存储引擎
 * 修改字符集配置：set character_set_server=utf8;
 
 ## 键&索引
----
+
+> 主键
+
+> 外键
+
+> 索引
 
 * [索引](./database/MySQL/Indexes.md)
 * 添加索引

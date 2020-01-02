@@ -284,3 +284,16 @@ curl -i  http://www.rest.com/api/foo' -b ~/cookies.txt
 -X/--request <command>	指定什么命令
 -y/--speed-time	放弃限速所要的时间，默认为30
 -Y/--speed-limit	停止传输速度的限制，速度时间
+
+## PHP CURL
+
+```php
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_HEADER, TRUE);
+curl_setopt($ch, CURLOPT_NOBODY, TRUE); // remove body
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+$head = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+```

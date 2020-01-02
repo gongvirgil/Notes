@@ -211,6 +211,7 @@ docker cp docker.war my-tomcat
 * 查看WEB应用程序容器的进程: docker top 容器名
 * 查看Docker的底层信息: docker inspect 容器名
     * 查看容器所挂载的目录: docker inspect container_name | grep Mounts -A 20
+* 查询容器的ip: docker inspect --format='{{.NetworkSettings.IPAddress}}' 容器名称|容器id
 
 docker exec -it <container_id> bash -c 'cat > /path/to/container/file' < /path/to/host/file/
 

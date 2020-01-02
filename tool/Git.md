@@ -281,6 +281,14 @@ helper = store
 * `git stash –keep-index` 只会备份那些没有被add的文件。
 * `git reset` 取消已经add的文件的备份。
 
+> 撤销merge
+
+第一步：git checkout到你要恢复的那个分支上
+git checkout develop
+第二步：git reflog查出要回退到merge前的版本号
+git reflog
+git reset --hard [版本号]
+
 ## 要更新本地仓库的远程地址请运行
 
 *(ssh):*

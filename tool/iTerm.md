@@ -60,3 +60,25 @@ interact
 cp login.exp /usr/local/bin/login.exp
 
 在profiles中 脚本使用：login.exp 地址 端口 用户名 密码
+
+## iTerm2上加按钮
+
+如何在iTerm2上加按钮，点一下执行设置好的命令？iterm2官网文档上面有一段 Scripts Menu  
+
+就是在item支持文件目录建一个Scripts的文件夹，可以支持AppleScript写的脚本。 
+
+mkdir -p $HOME/Library/Application Support/iTerm/Scripts
+
+建一个文件test.scpt
+
+```sh
+tell application "iTerm2"
+	tell current window
+		tell current session
+			write text "cd ~/Library/Application\\ Support/iTerm2/Scripts && pwd && ls"
+		end tell
+	end tell
+end tell
+```
+
+注意目录空格的反斜线。重启一下iTerm2。可以看到多出了Scripts的目录，里面有新建的脚本文件。点击运行。
