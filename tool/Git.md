@@ -254,11 +254,15 @@ helper = store
 * git merge `<branchName>` : 合并该分支到当前所在分支
 
 * git push origin --delete `<branchName>` : 删除远程分支
+* git remote prune origin : 远程分支残留清除
 
 * 推送本地分支`local`到远程分支`remote`并建立关联关系
   * 远程已有`remote`分支并且已经关联本地分支`local`且本地已经切换到`local` : git push
   * 远程已有`remote`分支但未关联本地分支`local`且本地已经切换到`local` : git push -u origin/`remote`
   * 远程没有`remote`分支，本地已经切换到`local` : git push origin `local`:`remote`
+
+* 对比两个分支
+	* 查看 dev 有，而 master 中没有的：git log dev ^master
 
 ## tag
 

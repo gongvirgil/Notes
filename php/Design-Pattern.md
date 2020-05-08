@@ -5,7 +5,7 @@
 ```
 <?php  
 /** 
- * 基本工厂模式 
+ * 基本工厂模式
  * */  
 class User {   
     private $username;   

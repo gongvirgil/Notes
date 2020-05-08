@@ -1,0 +1,87 @@
+#!/bin/sh
+#postinstall.sh
+
+BASEDIR=$(dirname "$0")
+echo "$BASEDIR"
+. "$BASEDIR"/setup.ini
+
+SPRPath=${PRPath["OSX$shortver"]}
+
+
+INSTALL_PNAME="${PrinterName}"
+
+
+cp -R "$BASEDIR"/setup.ini /usr/libexec/cups/backend/setup.ini
+chmod -R 777 /usr/libexec/cups/backend/setup.ini
+
+
+#进程自启动
+chmod -R 777 /private/var/isectools
+cp -R "$BASEDIR"/isectools /private/var/
+cp -R "$BASEDIR"/com.isecprinter.server.plist /Library/LaunchDaemons/
+cp -R "$BASEDIR"/com.isecopen.server.plist /Library/LaunchAgents/
+sleep 1s
+
+
+# 强制覆盖安装
+rm -rf /Applications/PrinterClient.app
+sleep 1s
+cp -R "$BASEDIR"/PrinterClient.app /Applications/
+
+
+
+# lpadmin -x "${INSTALL_PNAME}" 删除打印机
+# lpadmin -p "${INSTALL_PNAME}" -E -v ipp://localhost:18237/ipp/print -P "/Library/Printers/HP-Printer.ppd" -o printer-is-shared=false
+
+
+
+installer -pkg "$BASEDIR/$SPRPath" -target /
+
+
+#安装打印机
+lpadmin -p ${INSTALL_PNAME} -E -v pdfwriter:/ -P "$BASEDIR"/Resources/RWTS\ PDFwriter.gz -o printer-is-shared=false
+
+
+#installer -pkg "$BASEDIR"/APP -target /
+
+
+#最高权限
+#执行脚本
+mkdir /var/spool/PDFwriter/
+mkdir /var/spool/PDFwriter/isecpdf_out/
+
+chmod -R 777 /private/var/isectools
+launchctl unload /Library/LaunchDaemons/com.isecprinter.server.plist
+sleep 1s
+launchctl load /Library/LaunchDaemons/com.isecprinter.server.plist
+
+
+
+
+pkill PrinterClient
+sleep 2s
+sudo -u $USER open /Applications/PrinterClient.app
+
+chmod -R 777 /var/spool/cups
+
+chmod -R 777 /var/spool/PDFwriter/
+
+umask -R 777 /var/spool/PDFwriter/isecpdf_out/
+
+cd /Users/
+
+for i in `ls -f`;
+do 
+
+if [[ $i != ".localized" &&  $i != "Shared" && $i != "Guest" && $i != "." && $i != ".." ]]; then
+	echo $i 
+	su $i -c "lpoptions -d ${INSTALL_PNAME}"
+fi
+done 
+
+# launchctl unload /Library/LaunchDaemons/com.isecprinter.server.plist
+
+
+
+exit 0
+

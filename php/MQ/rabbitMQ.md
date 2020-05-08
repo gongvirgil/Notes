@@ -1,5 +1,28 @@
 # rabbitMQ
 
+## 虚拟主机vhost
+
+每一个RabbitMQ服务器都能创建虚拟消息服务器，我们称之为虚拟主机。每一个vhost本质上是一个mini版的RabbitMQ服务器，拥有自己的交换机、队列、绑定等，拥有自己的权限机制。vhost之于Rabbit就像虚拟机之于物理机一样。他们通过在各个实例间提供逻辑上分离，允许为不同的应用程序安全保密的运行数据，这很有，它既能将同一个Rabbit的众多客户区分开来，又可以避免队列和交换器的命名冲突。RabbitMQ提供了开箱即用的默认的虚拟主机“/”，如果不需要多个vhost可以直接使用这个默认的vhost，通过使用缺省的guest用户名和guest密码来访问默认的vhost。
+
+vhost之间是相互独立的，这避免了各种命名的冲突，就像App中的沙盒的概念一样，每个沙盒是相互独立的，且只能访问自己的沙盒，以保证非法访问别的沙盒带来的安全隐患。
+
+### 虚拟主机操作
+
+列举所有虚拟主机 rabbitmqctl list_vhosts
+添加虚拟主机 rabbitmqctl add_vhost <vhost_name>
+删除虚拟主机rabbitmqctl delete_vhost <vhost_name>
+添加用户 add_user <username> <password>
+设置用户标签 set_user_tags <username> <tag>// 设置这个才能在页面上登录,tag可以为administrator, monitoring, management
+设置权限 set_permissions [-p <vhost>] <user> <conf> <write> <read>
+权限配置包括：配置(队列和交换机的创建和删除)、写(发布消息)、读(有关消息的任何操作，包括清除这个队列)
+conf:一个正则表达式match哪些配置资源能够被该用户访问。
+write:一个正则表达式match哪些配置资源能够被该用户读。
+read:一个正则表达式match哪些配置资源能够被该用户访问
+
+
+
+
+
 ## 安装
 
 安装rabbitmq的

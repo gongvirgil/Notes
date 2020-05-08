@@ -1,5 +1,9 @@
 # Composer
 
+
+* 取消源：composer config -g --unset repos.packagist
+
+
 Composer是 PHP 用来管理依赖（dependency）关系的工具。你可以在自己的项目中声明所依赖的外部工具库（libraries），Composer 会帮你安装这些依赖的库文件。
 
 * [Composer 中文文档](http://docs.phpcomposer.com/)
@@ -533,3 +537,10 @@ COMPOSER_DISCARD_CHANGES
 COMPOSER_NO_INTERACTION
 
 如果设置为1，这个环境变量将使 Composer 在执行每一个命令时都放弃交互，相当于对所有命令都使用了 --no-interaction。可以在搭建 虚拟机/持续集成服务器 时这样设置。
+
+## packagist
+
+https://packagist.org/explore/popular
+
+* vlucas/phpdotenv
+* symfony/dotenv

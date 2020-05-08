@@ -116,6 +116,12 @@ a is a man|b is a girl|c is a dog
 ```
 <iframe width="80%" height="400" frameborder="0" allowfullscreen="" src="http://v.qq.com/iframe/player.html?vid=a0174g18ljr&tiny=0&auto=0"></iframe>
 
+## 常用html
+
+markdown分页导出pdf
+在需要分页之处，插入代码：
+<div STYLE="page-break-after: always;"></div>
+
 ## flow
 
 > 定义元素语法
@@ -261,3 +267,64 @@ gantt
     将功能加入到mermaid: 1d
 ```
 
+## PlantUML
+
+* 预先需要安装java和graphviz
+    * brew cask install java
+    * brew install graphviz
+* 安装2个vscode插件:
+    * PlantUML
+    * Graphviz Preview
+
+PlantUML是一个开源项目，支持快速绘制：
+
+* 时序图
+* 用例图
+* 类图
+* 活动图 (旧版语法在此处)
+* 组件图
+* 状态图
+* 对象图
+* 部署图
+* 定时图
+
+同时还支持以下非UML图:
+
+* 线框图形界面
+* 架构图
+* 规范和描述语言 (SDL)
+* Ditaa diagram
+* 甘特图
+* 思维导图
+* Work Breakdown Structure diagram
+* 以 AsciiMath 或 JLaTeXMath 符号的数学公式
+* Entity Relationship diagram
+
+通过简单直观的语言来定义这些示意图,与MarkDown有相似的作用，这两种语言一个主要面向文本渲染一个主要用于图形绘制。
+
+> 语法
+
+语法简单明了，查看以下官方教程 https://plantuml.com/zh/
+
+> 例子
+
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml
+
+* 预览
+    * Alt+D
+* 文件格式
+    * .wsd
+    * .pu
+    * .puml
+    * .plantuml
+    * .iuml
+* 导出
+    * F1/ctrl+shift+p
+    * PlantUML:导出当前图表
+    * 选择导出格式png
