@@ -20,9 +20,6 @@ write:一个正则表达式match哪些配置资源能够被该用户读。
 read:一个正则表达式match哪些配置资源能够被该用户访问
 
 
-
-
-
 ## 安装
 
 安装rabbitmq的
@@ -53,9 +50,7 @@ https://blog.csdn.net/a454213722/article/details/51870858
 
 ### 分发机制
 
-当多个消费者同时在消费同一个消息队列的时候，rabbitmq会顺序分发队列中message，当每个message收到ack，就会将这条消息从消息队列中删除，这种分发的机制叫做round-robin 
-这里不过多讨论rabbitmq的消息分发机制，有兴趣可以参考这个衔接 
-RabbitMQ消息队列（三）：任务分发机制
+当多个消费者同时在消费同一个消息队列的时候，rabbitmq会顺序分发队列中message，当每个message收到ack，就会将这条消息从消息队列中删除，这种分发的机制叫做round-robin。
 
 ## Demo
 
@@ -143,9 +138,25 @@ rabbitmqctl list_exchanges 查看rabbitmq中的交换机
 
 1、AMQP：Advanced Message Queuing Protocol，是一个提供统一消息服务的应用层标准协议。
 
+从 AMQP 协议可以看出，Queue、Exchange 和 Binding 构成了 AMQP 协议的核心:
+
+* Producer：消息生产者，即投递消息的程序。
+* Broker：消息队列服务器实体。
+    * Exchange：消息交换机，它指定消息按什么规则，路由到哪个队列。
+    * Binding：绑定，它的作用就是把 Exchange 和 Queue 按照路由规则绑定起来。
+    * Queue：消息队列载体，每个消息都会被投入到一个或多个队列。
+* Consumer：消息消费者，即接受消息的程序。
+
 2、IPC（单一系统进程间通信） -> socket（不同机器间进程通信） -> AMQP（解决大型系统模块与组件间通信）
 
 3、RabbitMQ 基于 Erlang 开发，是 AMQP 的一个开源实现。
+
+ConnectionFactory、Connection、Channel都是RabbitMQ对外提供的API中最基本的对象。
+
+* Connection，是RabbitMQ的socket链接，它封装了socket协议相关部分逻辑。
+* ConnectionFactory，如名称，是客户端与broker的tcp连接工厂，负责根据uri创建Connection。
+* Channel，是我们与RabbitMQ打交道的最重要的一个接口，我们大部分的业务操作是在Channel这个接口中完成的，包括定义Queue、定义Exchange、绑定Queue与Exchange、发布消息等。如果每一次访问RabbitMQ都建立一个Connection，在消息量大的时候建立TCP Connection的开销将是巨大的，效率也较低。Channel是在connection内部建立的逻辑连接，如果应用程序支持多线程，通常每个thread创建单独的channel进行通讯，AMQP method包含了channel id帮助客户端和message broker识别channel，所以channel之间是完全隔离的。Channel作为轻量级的Connection极大减少了操作系统建立TCP connection的开销。
+
 
 4、RabbitMQ 系统架构图：
 
@@ -500,6 +511,7 @@ $queue->bind($exchangeName);
 演示代码
 emit_logs.php
 
+```php
 <?php
 /**
  * 发送消息
@@ -534,8 +546,11 @@ try {
 
 // 断开连接
 $connection->disconnect();
+```
+
 receive_logs.php
 
+```php
 <?php
 /**
  * 接收消息
@@ -580,11 +595,13 @@ function processMessage($envelope, $queue) {
     var_dump("Received: " . $msg);
     $queue->ack($envelope->getDeliveryTag()); // 手动发送ACK应答
 }
+```
+
 演示流程
 
 打开两个终端，一个消费者队列负责将日志写入文件：
 
-php receive_logs.php > logs_from_rabbit.log 
+php receive_logs.php > logs_from_rabbit.log
 一个负责将日志输出到屏幕：
 
 php receive_logs.php
