@@ -1,0 +1,69 @@
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+
+
+<IfModule mod_rewrite.c>
+
+
+
+RewriteEngine on
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+
+
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+
+
+
+RewriteRule ^/?article/post_(\d+)\.html?$ articles?aid=$1 [L]
+
+
+RewriteCond %{http_host} ^90902.com [NC]
+
+
+RewriteRule ^(.*)$ http://www.90902.com/$1 [L,R=301]
+
+RewriteRule  ^index.php/news/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule ^index.php/([a-zA-Z]{1,})/yxgl/([0-9]{1,})\.html$ index.php/article/read/aid/$2  [L]
+RewriteRule  ^index.php/([a-zA-Z]{1,})/hdzx/([0-9]{1,})\.html$ index.php/article/read/aid/$2  [L]   
+
+
+RewriteRule  ^index.php/yxgg/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/rdhd/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/mtgg/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/yxzl/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/yxgl/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/yxjt/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/xsrm/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/gsjj/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/tsxt/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/tswf/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/yxxt/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/yxjs/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/gtjh/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/xwgg/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/xszn/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/hdzx/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/mtzx/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+RewriteRule  ^index.php/ltjh/([0-9]{1,})\.html$ index.php/article/read/aid/$1  [L]
+
+RewriteRule ^index.php/news/([0-9]{1,})\.html$ index.php/article/read/aid/$1 [QSA,PT,L]
+
+RewriteRule ^index.php/([a-zA-Z]{1,})([0-9]{1,})/list\.html$ index.php/Index/newslist/?name=$1&typeid=$2 [QSA,PT,L]
+
+RewriteRule ^index.php/([a-zA-Z]{1,})([0-9]{1,})/list_([0-9]{1,})\.html$ index.php/Index/newslist/?name=$1&typeid=$2&p=$3 [QSA,PT,L]
+
+
+</IfModule>
+
+
+
