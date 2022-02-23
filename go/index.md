@@ -192,3 +192,20 @@ Martini 很成熟
 Macaron 类似 Martini，更自由
 gin 用了都说好
 
+## 环境
+
+go env -w GOPROXY=https://goproxy.io,direct
+
+## 用Delve调试Go项目
+
+安装Delve，推荐 brew install go-delve/delve/delve ，不用自己配置很多麻烦的东西。
+
+如果遭遇错误，应该就是/usr/local存在权限问题，sudo chmod -R 777 /usr/local  。
+
+安装完毕后，打开Terminal，输入 dlv version 。
+
+如果看到Delve Debugger的版本信息，则表明Delve安装成功了！
+
+在VSCode打开的go项目文件内启动调试：调试 - 启动调试(F5)，
+
+不出意外，应该会看到错误提示，打开launch.json文件： 

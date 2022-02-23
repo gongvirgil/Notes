@@ -176,9 +176,11 @@ $ git reset --hard <commit_id>
 
 $ git cherry-pick <commit_id>   // 把某个commit id的提交合并到当前分支.
 
+
 ## 合并多次提交
 
 git rebase 命令：将多次commit合并，只保留一次提交历史记录。
+git rebase -i HEAD~2
 
 ## 免密码提交
 
@@ -582,3 +584,21 @@ git version 2.15.1
 [app@uatjenkins01 ~]$ source ~/.bashrc
 [app@uatjenkins01 ~]$ git --version
 git version 2.15.1
+
+
+> git 删除所有历史提交记录方法
+
+```s
+切换分支
+git checkout --orphan latest_branch
+添加所有文件
+git add -A
+提交更改
+git commit -am "no message"
+删除分支
+git branch -D master
+重命名分支
+git branch -m master
+强制更新
+git push -f origin master
+```

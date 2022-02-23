@@ -77,6 +77,22 @@ systemctl enable docker.service
 
 * 最后，需要重启docker服务 : systemctl restart docker.service
 
+### Mac下安装Docker
+
+1. homebrew的cask应支持Docker for Mac,所以可以直接安装  brew cask install docker
+2. 或者直接到官网下载，https://download.docker.com/mac/stable/Docker.dmg
+
+```sh
+docker --version
+Docker version 19.03.5, build 633a0ea
+
+docker-compose version
+docker-compose version 1.24.1, build 4667896b
+docker-py version: 3.7.3
+CPython version: 3.6.8
+OpenSSL version: OpenSSL 1.1.0j  20 Nov 2018
+```
+
 ## 1.3. 镜像加速
 
 * [镜像加速](https://yeasy.gitbooks.io/docker_practice/content/install/mirror.html)

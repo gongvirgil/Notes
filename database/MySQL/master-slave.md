@@ -13,7 +13,7 @@ mysql> show master status;
 
 在slave中执行：
 
-change master to master_host='172.16.35.200', master_user='root', master_password='xxx', master_port=13306, master_log_file='replicas-mysql-bin.000004', master_log_pos= 154, master_connect_retry=30;
+change master to master_host='127.0.0.1', master_user='root', master_password='xxx', master_port=13306, master_log_file='replicas-mysql-bin.000004', master_log_pos= 154, master_connect_retry=30;
 
 * master_host ：Master的地址
 * master_port：Master的端口号，指的是容器的端口号
