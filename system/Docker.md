@@ -93,6 +93,34 @@ CPython version: 3.6.8
 OpenSSL version: OpenSSL 1.1.0j  20 Nov 2018
 ```
 
+Docker Engine Config
+v20.10.11
+Configure the Docker daemon by typing a json Docker daemon configuration file.
+```sh
+{
+  "debug": true,
+  "log-opts": {
+    "max-size": "500m",
+    "max-file": "3"
+  },
+  "experimental": false,
+  "log-driver": "json-file",
+  "builder": {
+    "gc": {
+      "enabled": true,
+      "defaultKeepStorage": "20GB"
+    }
+  },
+  "features": {
+    "buildkit": false
+  },
+  "registry-mirrors": [
+    "https://docker.mirrors.ustc.edu.cn"
+  ]
+}
+```
+
+
 ## 1.3. 镜像加速
 
 * [镜像加速](https://yeasy.gitbooks.io/docker_practice/content/install/mirror.html)
@@ -121,7 +149,7 @@ docker run -p 3306:3306 -v /mariadb/data:/var/lib/mysql -v /mariadb/conf/my.cnf:
 
 ## Docker运行配置
 
-vi /etc/docker/daemon.json
+sudo vi /etc/docker/daemon.json
 {
   "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"],
   "log-driver":"json-file",

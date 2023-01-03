@@ -410,10 +410,13 @@ git branch recover_branch[新分支] commit_id
 * C -> B : git reset --soft HEAD^
 * 修改最后一次提交:git commit --amend
 
+
+
 ## 撤销
 
 > 版本回退
 
+* 撤销merge = 本地版本回退
 * git reset --hard 版本号
 
 > 绿字变红字(撤销add)
