@@ -386,6 +386,38 @@ git branch recover_branch[新分支] commit_id
 * git config --global core.fileMode false // 所有版本库
 * cat .git/config // 查看git的配置文件
 
+### 解除单文件最大100M限制
+
+方法一：
+
+git config --global http.postBuffer 524288000   调整postbuffer为500M, 再次提交
+之前git中的配置是没有这一项的,执行完以上语句后输入git config -l可以看到配置项的最下面多出了一行我们刚刚配置的内容. (52428000=500×1024×1024,即500M)
+
+
+方法二： 在项目文件夹.git\config配置文件加上：
+
+[http]
+postBuffer = 52428800
+
+使用Git Large File Storage）
+3.1 安装（在MAC上使用Homebrew安装）
+brew install git-lfs
+
+3.2 选择您希望Git LFS管理的文件类型（或直接编辑.gitattributes）。您可以随时配置其他文件扩展名。这一步成功后会生成一个gitattributes文件
+git lfs track “* .txt” # 这里的 “ *.txt "就是你要上传的大文件的路径
+
+3.3 添加并commit .gitattributes文件
+git add .gitattributes
+git commit .gitattributes
+git push
+
+Note：要单独将.gitattributes文件push到远端后再来对具体的大文件进行操作
+3.4 添加并commit 大文件
+git add “*.txt”
+git commit
+git push
+
+
 ## Git各个状态之间转换指令总结
 
 ### 基本状态标识
@@ -605,3 +637,9 @@ git branch -m master
 强制更新
 git push -f origin master
 ```
+
+使用homebrew 报错：fatal: not in a git directory Error: Command failed with exit 128: git
+
+执行brew -v 命令看看是不是有两个提示，你的 homebrew-core和homebrew-cask目录 被git认为不是一个安全的目录，需要手动添加
+git config --global --add safe.directory 你的homebrew-core路径
+git config --global --add safe.directory 你的homebrew-cask路径
