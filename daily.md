@@ -62,6 +62,9 @@ nginx -p ./ -c ./conf/nginx.conf
 
 * 迁移电脑环境
 
+git配置
+
+
 
 
 ## to-do-list
