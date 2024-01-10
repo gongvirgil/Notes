@@ -1,0 +1,147 @@
+{
+    "root": {
+        "data": {
+            "id": "cse7f6cqnc80",
+            "created": 1683275658885,
+            "text": "Go学习路线",
+            "background": "#73bf76",
+            "expandState": "expand"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "cse7f6cqnc80",
+                    "created": 1683275658885,
+                    "text": "技术社区",
+                    "expandState": "expand",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "cse7f6cqnc80",
+                    "created": 1683275658885,
+                    "text": "WEB开发",
+                    "expandState": "expand",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "cse7j8231q00",
+                    "created": 1683275976051,
+                    "text": "实用工具 ",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "cse7jau7y2w0",
+                    "created": 1683275982105,
+                    "text": "练手项目 ",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "cse7jkbmk0o0",
+                    "created": 1683276002749,
+                    "text": "入门教程",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "cse7iqedm6g0",
+                    "created": 1683275937612,
+                    "text": "进阶教程",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "cse7iyb19ns0",
+                    "created": 1683275954824,
+                    "text": "书籍推荐",
+                    "layout": null
+                },
+                "children": []
+            },
+            {
+                "data": {
+                    "id": "cse8o0nnbag0",
+                    "created": 1683279172871,
+                    "text": "学习分享"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "cse8oahj8r40",
+                            "created": 1683279194269,
+                            "text": "GO的设计模式应用实践"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "csgqznpjnu80",
+                                    "created": 1683533984949,
+                                    "text": " "
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "cse8q5x4mco0",
+                            "created": 1683279341056,
+                            "text": "底层操作系统交互 - 高性能"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "cse8rnnir3c0",
+                            "created": 1683279458022,
+                            "text": "汇编执行逻辑-底层原理"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "cse8tgi9jdc0",
+                            "created": 1683279599195,
+                            "text": "C-go"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "cse8u1x8gts0",
+                            "created": 1683279645812,
+                            "text": "xxx-最佳实践"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "csgr0uuebww0",
+                            "created": 1683534078844,
+                            "text": "topic"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-green",
+    "version": "1.4.43"
+}

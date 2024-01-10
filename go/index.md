@@ -212,4 +212,28 @@ go env -w GOPROXY=https://goproxy.io,direct
 
 在VSCode打开的go项目文件内启动调试：调试 - 启动调试(F5)，
 
-不出意外，应该会看到错误提示，打开launch.json文件： 
+不出意外，应该会看到错误提示，打开launch.json文件：
+
+## go1.18
+
+* 包地址：https://go.dev/dl/
+
+
+```bash
+go install golang.org/dl/go1.18@latest
+go1.18 download
+go1.18 version
+
+#M1芯片
+wget https://go.dev/dl/go1.18.darwin-arm64.tar.gz
+#intel芯片
+wget https://go.dev/dl/go1.18.darwin-amd64.tar.gz
+
+# 先解压
+tar -C /tmp/ -xzf go1.18.darwin-amd64.tar.gz
+# 再移动
+sudo mv /tmp/go /usr/local/go18
+# 后访问
+/usr/local/go18/bin/go version
+go version go1.18 darwin/amd64
+```

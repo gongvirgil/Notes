@@ -58,6 +58,12 @@ nginx -p /Users/gongvirgil/workspace/gq/web/open-comm/bin/.. -c /Users/gongvirgi
 nginx -p ./ -c ./conf/nginx.conf
 ```
 
+## 2024-01-10
+
+* 迁移电脑环境
+
+
+
 ## to-do-list
 
 > kafaka docker

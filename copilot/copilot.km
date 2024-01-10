@@ -1,0 +1,141 @@
+{
+    "root": {
+        "data": {
+            "id": "cse7nwv8c280",
+            "created": 1683276343512,
+            "text": "Github Copilot"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "csgpf2s3ffc0",
+                    "created": 1683529550998,
+                    "text": "自动补全"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "csgqr3pfbnc0",
+                            "created": 1683533314493,
+                            "text": "if"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "csgqr842gzs0",
+                            "created": 1683533324085,
+                            "text": "for"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "csgpfihjgc00",
+                    "created": 1683529585188,
+                    "text": "函数生成"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "csgph0012cg0",
+                            "created": 1683529701675,
+                            "text": "SQL自动编码Model方法"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "csgph2j32i00",
+                                    "created": 1683529707181,
+                                    "text": "佳欢"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "csgqs4qbegg0",
+                            "created": 1683533395088,
+                            "text": "通过注释自动生成，常用工具函数"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "csgpfpbgd5s0",
+                    "created": 1683529600057,
+                    "text": "智能推理"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "csgqultvsc80",
+                            "created": 1683533589037,
+                            "text": "需要上下文，建议统一风格"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "csgpfvksilc0",
+                    "created": 1683529613683,
+                    "text": "生成测试代码片段"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "csgqv3blodc0",
+                            "created": 1683533627114,
+                            "text": "王钲源"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "csgpg13qho80",
+                    "created": 1683529625712,
+                    "text": "代码重构"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "csgqvlw123s0",
+                            "created": 1683533667531,
+                            "text": "王凯"
+                        },
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "data": {
+                    "id": "csgpg6wx6iw0",
+                    "created": 1683529638361,
+                    "text": "代码示例"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "csgqxixyky00",
+                            "created": 1683533817846,
+                            "text": "杨谕斌"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-green",
+    "version": "1.4.43"
+}
